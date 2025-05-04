@@ -1,6 +1,7 @@
 import HeroSection from "@/components/HeroSection";
 import Image from "next/image";
 import SectionTitle from "@/components/SectionTitle";
+import NewsLetter from "@/components/NewsLetter";
 
 interface HeroProps {
     image: string;
@@ -10,7 +11,7 @@ interface HeroProps {
 
 const AboutUsPage = () => {
 
-    const hero : HeroProps = {
+    const hero: HeroProps = {
         image: "/about-hero.png",
         title: "Who We Are",
         subTitle: "Discover your favorite entertainment right here",
@@ -23,7 +24,7 @@ const AboutUsPage = () => {
                 <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16">
                     <SectionTitle title="About Us"/>
                     <div
-                        className="relative mt-12 w-full h-64 sm:h-80 md:h-96 lg:h-[400px] xl:h-[700px] mb-6 sm:mb-8 md:mb-10 lg:mb-12">
+                        className="relative mt-12 w-full h-64 sm:h-80 md:h-96 lg:h-[400px] xl:h-[600px] mb-6 sm:mb-8 md:mb-10 lg:mb-12">
                         <Image
                             src="/about-bg.png"
                             alt="About Us"
@@ -46,6 +47,7 @@ const AboutUsPage = () => {
                     </p>
                 </div>
             </div>
+            <NewsLetter/>
         </div>
     );
 }

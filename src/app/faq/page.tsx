@@ -1,4 +1,5 @@
 import HeroSection from "@/components/HeroSection";
+import NewsLetter from "@/components/NewsLetter";
 
 interface HeroProps {
     image: string;
@@ -41,11 +42,11 @@ const FAQ = () => {
         <div className="min-h-screen">
             <HeroSection hero={hero}/>
 
-            <div className="py-8 px-4 sm:px-6 lg:px-20 bg-[#F4FCFF]">
-                <div className="space-y-4">
+            <div className="py-8 px-4 sm:px-6 lg:px-20 rounded-b-[100px] -mt-20 bg-[#F4FCFF]">
+                <div className="space-y-4 mt-20">
                     {faqs.map((faq, index) => (
                         <details key={index}
-                                 className="group border-gray-200 bg-white py-8 px-6"
+                                 className="group border-blue-800 drop-shadow-md group-open:border-blue-200 bg-white py-8 px-6"
                         >
                             <summary className="flex items-center justify-between gap-1.5">
                                 <h2 className="font-medium font-inter text-2xl text-[#170F49]">{faq.question}</h2>
@@ -93,6 +94,7 @@ const FAQ = () => {
                     ))}
                 </div>
             </div>
+            <NewsLetter/>
         </div>
     );
 }

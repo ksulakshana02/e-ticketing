@@ -673,7 +673,7 @@ const NavigationBar: React.FC = () => {
     };
 
     return (
-        <header className="w-full bg-indigo-900 px-4 py-4 sm:px-6 lg:px-8 rounded-md shadow-md">
+        <header className="w-full bg-indigo-900 px-4 py-2 sm:px-6 lg:px-8 rounded-md shadow-md">
             <div className="mx-auto flex max-w-screen-2xl items-center justify-between">
                 {/* Logo - Responsive sizing */}
                 <div className="flex items-center">
