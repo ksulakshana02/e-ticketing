@@ -1,10 +1,25 @@
 import MainHeader from "@/components/MainHeader";
 import Image from "next/image";
 
+interface HeroProps {
+    image: string;
+    title: string;
+    subTitle: string;
+    type: string;
+}
+
 const EventPage = () => {
+
+    const hero: HeroProps = {
+        image: "/event-inner.png",
+        title: "Camellia  Concert",
+        subTitle: "Event will start On",
+        type: "countdown"
+    }
+
     return (
         <div className="min-h-screen">
-            <MainHeader/>
+            <MainHeader hero={hero}/>
             <div className="w-full py-6 sm:py-8 md:py-10 lg:py-12 xl:py-14 2xl:py-16 px-4 sm:px-6 lg:px-8 bg-white">
                 <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16">
                     <div className="flex flex-col lg:flex-row gap-6">

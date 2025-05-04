@@ -123,16 +123,57 @@
 
 "use client";
 
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Image from "next/image";
 import Nav from "@/components/Nav";
 
-const Hero: React.FC = () => {
+interface HeroProps {
+    image: string;
+    title: string;
+    subTitle: string;
+    type: string;
+}
+
+const Hero = ({hero}: { hero: HeroProps }) => {
+
+    const [countdown, setCountdown] = useState({
+        days: 36,
+        hours: 3,
+        minutes: 54,
+        seconds: 54,
+    });
+
+    const targetDate = new Date("2025-06-10T19:00:00").getTime();
+
+    useEffect(() => {
+        if (hero.type === "countdown") {
+            const interval = setInterval(() => {
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                setCountdown({days, hours, minutes, seconds});
+
+                if (distance < 0) {
+                    clearInterval(interval);
+                    setCountdown({days: 0, hours: 0, minutes: 0, seconds: 0});
+                }
+            }, 1000);
+
+            return () => clearInterval(interval);
+        }
+    }, [hero.type, targetDate]);
+
+
     return (
         <main className="relative w-full min-h-[500px] sm:min-h-[600px] font-medium">
             {/* Background Image */}
             <Image
-                src="/hero.png"
+                src={hero.image}
                 alt="Background"
                 fill
                 className="object-cover rounded-b-[40px] sm:rounded-b-[60px] lg:rounded-b-[80px] 2xl:rounded-b-[100px]"
@@ -142,42 +183,90 @@ const Hero: React.FC = () => {
             />
 
             {/* Content */}
-            <div className="relative z-10 flex flex-col w-full max-w-screen-2xl mx-auto px-4 py-6 sm:px-6 sm:py-8 md:px-8 md:py-10 lg:px-12 lg:py-14 xl:px-16 xl:py-16 2xl:px-20 2xl:py-20">
+            <div
+                className="relative z-10 flex flex-col w-full max-w-screen-2xl mx-auto px-4 py-6 sm:px-6 sm:py-8 md:px-8 md:py-10 lg:px-12 lg:py-14 xl:px-16 xl:py-16 2xl:px-20 2xl:py-20">
                 {/* Navigation */}
-                <Nav />
+                <Nav/>
 
                 {/* Hero Content */}
-                <section className="mt-8 sm:mt-10 md:mt-12 lg:mt-16 xl:mt-20 2xl:mt-24 flex flex-col items-start max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl">
+                <section
+                    className="mt-8 sm:mt-10 md:mt-12 lg:mt-16 xl:mt-20 2xl:mt-24 flex flex-col items-start max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl">
                     <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl groteskBold text-white leading-6">
-                        Let’s Book Your Ticket
+                        {hero.title}
                     </h1>
                     <p className="mt-3 sm:mt-4 md:mt-5 lg:mt-6 text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-inter font-light text-white">
-                        Discover your favorite entertainment right here
+                        {hero.subTitle}
                     </p>
 
                     {/* Search Bar */}
-                    <form className="mt-6 sm:mt-8 md:mt-10 w-full max-w-sm sm:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl bg-white rounded-lg flex flex-col sm:flex-row items-stretch text-base sm:text-lg">
-                        <input
-                            type="text"
-                            placeholder="Search for events, Artists"
-                            className="grow px-3 py-2 sm:px-4 sm:py-3 md:px-5 md:py-4 sm:rounded-l-lg rounded-t-lg sm:rounded-tr-none font-inter font-medium text-[#27337C] outline-none sm:border-r-0 border-b sm:border-b-0 border-gray-300 text-sm sm:text-base md:text-lg"
-                            aria-label="Search for events or artists"
-                        />
-                        <button
-                            type="submit"
-                            className="flex items-center font-inter font-medium text-sm sm:text-base md:text-lg justify-center gap-1.5 sm:gap-2 px-4 py-2 sm:px-5 sm:py-3 md:px-6 md:py-4 bg-[#27337C] text-white sm:rounded-r-lg rounded-b-lg sm:rounded-bl-none hover:bg-indigo-800 transition-colors duration-200"
-                            aria-label="Search"
-                        >
-                            <Image
-                                src="/search.png"
-                                alt=""
-                                width={20}
-                                height={20}
-                                className="object-contain sm:w-6 sm:h-6 md:w-7 md:h-7"
+                    {hero.type === "form" ? (
+                        <form
+                            className="mt-6 sm:mt-8 md:mt-10 w-full max-w-sm sm:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl bg-white rounded-lg flex flex-col sm:flex-row items-stretch text-base sm:text-lg">
+                            <input
+                                type="text"
+                                placeholder="Search for events, Artists"
+                                className="grow px-3 py-2 sm:px-4 sm:py-3 md:px-5 md:py-4 sm:rounded-l-lg rounded-t-lg sm:rounded-tr-none font-inter font-medium text-[#27337C] outline-none sm:border-r-0 border-b sm:border-b-0 border-gray-300 text-sm sm:text-base md:text-lg"
+                                aria-label="Search for events or artists"
                             />
-                            <span>Search</span>
-                        </button>
-                    </form>
+                            <button
+                                type="submit"
+                                className="flex items-center font-inter font-medium text-sm sm:text-base md:text-lg justify-center gap-1.5 sm:gap-2 px-4 py-2 sm:px-5 sm:py-3 md:px-6 md:py-4 bg-[#27337C] text-white sm:rounded-r-lg rounded-b-lg sm:rounded-bl-none hover:bg-indigo-800 transition-colors duration-200"
+                                aria-label="Search"
+                            >
+                                <Image
+                                    src="/search.png"
+                                    alt=""
+                                    width={20}
+                                    height={20}
+                                    className="object-contain sm:w-6 sm:h-6 md:w-7 md:h-7"
+                                />
+                                <span>Search</span>
+                            </button>
+                        </form>
+                    ) : hero.type === "countdown" ? (
+                        <div className="flex justify-start gap-2 mt-4">
+                            <div className="bg-white text-blue-900 p-2 sm:p-4 rounded-lg text-center w-15 sm:w-20">
+                                <div
+                                    className="text-lg sm:text-xl md:text-2xl lg:text-4xl font-inter text-[#2D3192] font-bold">{countdown.days}</div>
+                                <div
+                                    className="text-xs sm:text-sm md:text-base font-inter font-medium text-[#9C9C9C]">DAYS
+                                </div>
+                            </div>
+                            <div className="flex-col space-y-4 hidden md:flex md:block justify-center items-center px-1">
+                                <div className="w-4 h-4 rounded-md bg-white/50"/>
+                                <div className="w-4 h-4 rounded-md bg-white/50"/>
+                            </div>
+                            <div className="bg-white text-blue-900 p-2 sm:p-3 rounded-lg text-center w-15 sm:w-20">
+                                <div
+                                    className="text-lg sm:text-xl md:text-2xl lg:text-4xl font-inter text-[#2D3192] font-bold">{countdown.hours}</div>
+                                <div
+                                    className="text-xs sm:text-sm md:text-base font-inter font-medium text-[#9C9C9C]">HOURS
+                                </div>
+                            </div>
+                            <div className="hidden md:block md:flex flex-col space-y-4 justify-center items-center px-1">
+                                <div className="w-4 h-4 rounded-md bg-white/50"/>
+                                <div className="w-4 h-4 rounded-md bg-white/50"/>
+                            </div>
+                            <div className="bg-white text-blue-900 p-2 sm:p-3 rounded-lg text-center w-15 sm:w-20">
+                                <div
+                                    className="text-lg sm:text-xl md:text-2xl lg:text-4xl font-inter text-[#2D3192] font-bold">{countdown.minutes}</div>
+                                <div
+                                    className="text-xs sm:text-sm md:text-base font-inter font-medium text-[#9C9C9C]">MINS
+                                </div>
+                            </div>
+                            <div className="hidden md:block md:flex flex-col space-y-4 justify-center items-center px-1">
+                                <div className="w-4 h-4 rounded-md bg-white/50"/>
+                                <div className="w-4 h-4 rounded-md bg-white/50"/>
+                            </div>
+                            <div className="bg-white text-blue-900 p-2 sm:p-3 rounded-lg text-center w-15 sm:w-20">
+                                <div
+                                    className="text-lg sm:text-xl md:text-2xl lg:text-4xl font-inter text-[#2D3192] font-bold">{countdown.seconds}</div>
+                                <div
+                                    className="text-xs sm:text-sm md:text-base font-inter font-medium text-[#9C9C9C]">SECS
+                                </div>
+                            </div>
+                        </div>
+                    ) : null}
                 </section>
             </div>
         </main>
