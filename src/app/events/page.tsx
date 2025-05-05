@@ -110,6 +110,7 @@ const EventsPage = () => {
 
     const handleFilterChange = (newFilters: EventFilters) => {
         setFilters(newFilters);
+        console.log(filters);
         console.log('Filters applied:', newFilters);
     };
 
