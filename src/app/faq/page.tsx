@@ -42,14 +42,14 @@ const FAQ = () => {
         <div className="min-h-screen">
             <HeroSection hero={hero}/>
 
-            <div className="py-8 px-4 sm:px-6 lg:px-20 rounded-b-[100px] -mt-20 bg-[#F4FCFF]">
-                <div className="space-y-4 mt-20">
+            <div className="py-8 px-4 sm:px-6 lg:px-20 rounded-b-[50px] lg:rounded-b-[100px] -mt-20 bg-[#F4FCFF]">
+                <div className="space-y-4 mt-20 mb-10 lg:mb-0">
                     {faqs.map((faq, index) => (
                         <details key={index}
                                  className="group border-blue-800 drop-shadow-md group-open:border-blue-200 bg-white py-8 px-6"
                         >
                             <summary className="flex items-center justify-between gap-1.5">
-                                <h2 className="font-medium font-inter text-2xl text-[#170F49]">{faq.question}</h2>
+                                <h2 className="font-medium font-inter text-lg lg:text-2xl text-[#170F49]">{faq.question}</h2>
                                 <svg width="83" height="83" viewBox="0 0 83 83" fill="none"
                                      className="w-12 h-12 transition-transform group-open:hidden"
                                      xmlns="http://www.w3.org/2000/svg">
@@ -87,7 +87,7 @@ const FAQ = () => {
 
                             </summary>
 
-                            <p className="pt-4 text-lg font-sans font-normal text-[#6F6C90]">
+                            <p className="pt-4 text-base lg:text-lg font-sans font-normal text-[#6F6C90]">
                                 {faq.answer}
                             </p>
                         </details>

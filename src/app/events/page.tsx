@@ -117,23 +117,25 @@ const EventsPage = () => {
     return (
         <div className="min-h-screen">
             <HeroSection hero={hero}/>
-            <div className="py-10 px-4 sm:px-6 max-w-7xl mx-auto">
-                <SectionTitle title="Latest Events"/>
-            </div>
-            <div className="py-5 px-4 sm:px-6 lg:px-12">
-                <EventFilter onFilterChange={handleFilterChange}/>
-            </div>
-            <section className="px-4 sm:px-6 lg:px-8 bg-white">
-                <div className="max-w-7xl mx-auto">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
-                        {events.map((event, index) => (
-                            <EventCard key={index} {...event} />
-                        ))}
-                    </div>
+            <div className="py-8 px-4 sm:px-6 lg:px-20">
+                <div className="py-2 sm:py-10 px-4 sm:px-6 max-w-7xl mx-auto">
+                    <SectionTitle title="Latest Events"/>
                 </div>
-            </section>
-            <div className="my-10 flex justify-center">
-                <Pagination/>
+                <div className="py-5 px-4 sm:px-6 lg:px-12">
+                    <EventFilter onFilterChange={handleFilterChange}/>
+                </div>
+                <section className="px-4 sm:px-6 lg:px-8 bg-white">
+                    <div className="max-w-7xl mx-auto">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
+                            {events.map((event, index) => (
+                                <EventCard key={index} {...event} />
+                            ))}
+                        </div>
+                    </div>
+                </section>
+                <div className="my-10 flex justify-center">
+                    <Pagination/>
+                </div>
             </div>
         </div>
     );

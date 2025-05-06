@@ -21,9 +21,9 @@ interface SectionTitleProps {
 
 const SectionTitle: React.FC<SectionTitleProps> = ({title}) => {
     return (
-        <div className="flex items-center gap-8 mt-4 text-4xl sm:text-5xl montserrat font-medium text-[#27337C]">
+        <div className="flex items-center gap-4 sm:gap-8 mt-4 text-2xl sm:text-5xl montserrat font-medium text-[#27337C]">
             <h2>{title}</h2>
-            <div className="w-32 sm:w-40 h-1 self-end bg-[#27337C] rounded-sm"/>
+            <div className="w-32 sm:w-40 h-0.5 sm:h-1 self-end bg-[#27337C] rounded-sm"/>
         </div>
     );
 };
