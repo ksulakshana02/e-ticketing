@@ -27,7 +27,7 @@ const Pagination = ({currentPage, totalPages, onPageChange}: PaginationProps) =>
         const maxPagesToShow = 5;
         const pages: (number | string)[] = [];
         let startPage = Math.max(1, currentPage - 2);
-        let endPage = Math.min(totalPages, startPage + maxPagesToShow - 1);
+        const endPage = Math.min(totalPages, startPage + maxPagesToShow - 1);
 
         // Adjust startPage if endPage is at totalPages
         if (endPage - startPage < maxPagesToShow - 1) {
