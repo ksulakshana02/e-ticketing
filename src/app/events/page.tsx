@@ -144,7 +144,7 @@
 // export default EventsPage;
 
 "use client";
-import {useState} from "react";
+import {Suspense, useState} from "react";
 import HeroSection from "@/components/HeroSection";
 import Pagination from "@/components/Pagination";
 import EventFilter from "@/components/Filter";
@@ -178,28 +178,19 @@ interface EventFilters {
     priceRange: number[];
 }
 
-// interface ExtendedEvent {
-//     image: string;
-//     title: string;
-//     date: string;
-//     time: string;
-//     location: string;
-//     price: string;
-//     artist: Artist; // Added artist field
-// }
 
-const EventsPage = () => {
+const hero: HeroProps = {
+    image: "/event-hero.png",
+    title: "Explore Our Events",
+    subTitle: "Discover your favorite entertainment right here",
+};
+
+const EventsContent = () => {
     const [filters, setFilters] = useState<EventFilters | null>(null);
     const [currentPage, setCurrentPage] = useState(1);
     const eventsPerPage = 12;
     const searchParams = useSearchParams();
     const searchQuery = searchParams.get("search")?.toLowerCase() || "";
-
-    const hero: HeroProps = {
-        image: "/event-hero.png",
-        title: "Explore Our Events",
-        subTitle: "Discover your favorite entertainment right here",
-    };
 
     const handleFilterChange = (newFilters: EventFilters) => {
         setFilters(newFilters);
@@ -215,35 +206,6 @@ const EventsPage = () => {
     const parseEventDate = (date: string): Date => {
         return new Date(date);
     };
-
-    // Filter events based on the current filters
-    // const filteredEvents = filters
-    //     ? events.filter((event) => {
-    //         const eventDate = parseEventDate(event.date);
-    //         const eventPrice = parsePrice(event.price);
-    //
-    //         // Date range filter
-    //         const dateMatch =
-    //             !filters.startDate ||
-    //             !filters.endDate ||
-    //             (eventDate >= filters.startDate && eventDate <= filters.endDate);
-    //
-    //         // Artist filter
-    //         const artistMatch =
-    //             !filters.artist || event.artist.id === filters.artist.id;
-    //
-    //         // Location filter
-    //         const locationMatch =
-    //             !filters.location || event.location === filters.location.name;
-    //
-    //         // Price range filter
-    //         const priceMatch =
-    //             eventPrice >= filters.priceRange[0] &&
-    //             eventPrice <= filters.priceRange[1];
-    //
-    //         return dateMatch && artistMatch && locationMatch && priceMatch;
-    //     })
-    //     : events;
 
     const filteredEvents = events.filter((event) => {
         const eventDate = parseEventDate(event.date);
@@ -278,38 +240,46 @@ const EventsPage = () => {
     const paginatedEvents = filteredEvents.slice(startIndex, startIndex + eventsPerPage);
 
     return (
+        <div className="py-8 px-4 sm:px-6 lg:px-20">
+            <div className="py-2 sm:py-10 px-4 sm:px-6 max-w-7xl mx-auto">
+                <SectionTitle title="Latest Events"/>
+            </div>
+            <div className="py-5 px-4 sm:px-6 lg:px-12">
+                <EventFilter onFilterChange={handleFilterChange}/>
+            </div>
+            <section className="px-4 sm:px-6 lg:px-8 bg-white">
+                <div className="max-w-7xl mx-auto">
+                    {paginatedEvents.length > 0 ? (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
+                            {paginatedEvents.map((event, index) => (
+                                <EventCard key={index} {...event} />
+                            ))}
+                        </div>
+                    ) : (
+                        <div className="text-center py-10">
+                            <p className="text-gray-500">No events match the selected filters.</p>
+                        </div>
+                    )}
+                </div>
+            </section>
+            <div className="my-10 flex justify-center">
+                <Pagination
+                    currentPage={currentPage}
+                    totalPages={totalPages}
+                    onPageChange={setCurrentPage}
+                />
+            </div>
+        </div>
+    );
+};
+
+const EventsPage = () => {
+    return (
         <div className="min-h-screen">
             <HeroSection hero={hero}/>
-            <div className="py-8 px-4 sm:px-6 lg:px-20">
-                <div className="py-2 sm:py-10 px-4 sm:px-6 max-w-7xl mx-auto">
-                    <SectionTitle title="Latest Events"/>
-                </div>
-                <div className="py-5 px-4 sm:px-6 lg:px-12">
-                    <EventFilter onFilterChange={handleFilterChange}/>
-                </div>
-                <section className="px-4 sm:px-6 lg:px-8 bg-white">
-                    <div className="max-w-7xl mx-auto">
-                        {paginatedEvents.length > 0 ? (
-                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
-                                {paginatedEvents.map((event, index) => (
-                                    <EventCard key={index} {...event} />
-                                ))}
-                            </div>
-                        ) : (
-                            <div className="text-center py-10">
-                                <p className="text-gray-500">No events match the selected filters.</p>
-                            </div>
-                        )}
-                    </div>
-                </section>
-                <div className="my-10 flex justify-center">
-                    <Pagination
-                        currentPage={currentPage}
-                        totalPages={totalPages}
-                        onPageChange={setCurrentPage}
-                    />
-                </div>
-            </div>
+            <Suspense fallback={<div className="text-center py-10">Loading events...</div>}>
+                <EventsContent/>
+            </Suspense>
         </div>
     );
 };
