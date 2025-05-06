@@ -58,7 +58,7 @@ const EventCard: React.FC<EventCardProps> = ({
                                 </div>
                             </div>
                             <div
-                                className="flex justify-start gap-3 mt-3 text-xs font-inter font-medium text-[#6B7280]">
+                                className="flex justify-start items-center gap-3 mt-3 text-xs font-inter font-medium text-[#6B7280]">
                                 <Image
                                     src="/location.png"
                                     alt=""

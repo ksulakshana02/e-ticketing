@@ -445,6 +445,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import {useTheme} from '@mui/material/styles';
+import {locations, artists} from "@/lib/data"
 
 // Types
 interface Artist {
@@ -470,20 +471,6 @@ interface EventFilters {
     priceRange: number[];
 }
 
-// Mock data
-const artists: Artist[] = [
-    {id: 1, name: 'Victor Rathnayake'},
-    {id: 2, name: 'Nanda Malini'},
-    {id: 3, name: 'Amaradeva'},
-    {id: 4, name: 'Rohana Weerasinghe'},
-];
-
-const locations: Location[] = [
-    {id: 1, name: 'Musaeus College Auditorium'},
-    {id: 2, name: 'Nelum Pokuna Theatre'},
-    {id: 3, name: 'Lionel Wendt Theatre'},
-    {id: 4, name: 'BMICH'},
-];
 
 const EventFilter: React.FC<EventFilterProps> = ({onFilterChange, className}) => {
     const theme = useTheme();
@@ -800,7 +787,7 @@ const EventFilter: React.FC<EventFilterProps> = ({onFilterChange, className}) =>
                         startIcon={<SearchIcon/>}
                         onClick={handleSearch}
                         fullWidth={isMobile || isTablet}
-                        className="bg-indigo-700 hover:bg-indigo-800 h-14"
+                        className="bg-[#27337C] justify-center hover:bg-indigo-800 h-14"
                         sx={{
                             height: '56px',
                             minWidth: isDesktop ? '56px' : 'auto',

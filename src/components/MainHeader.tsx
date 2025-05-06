@@ -126,6 +126,7 @@
 import React, {useEffect, useState} from "react";
 import Image from "next/image";
 import Nav from "@/components/Nav";
+import {useRouter} from "next/navigation";
 
 interface HeroProps {
     image: string;
@@ -142,6 +143,9 @@ const Hero = ({hero}: { hero: HeroProps }) => {
         minutes: 54,
         seconds: 54,
     });
+
+    const [searchQuery, setSearchQuery] = useState("");
+    const router = useRouter();
 
     const targetDate = new Date("2025-06-10T19:00:00").getTime();
 
@@ -169,6 +173,14 @@ const Hero = ({hero}: { hero: HeroProps }) => {
     }, [hero.type, targetDate]);
 
 
+    const handleSearchSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (searchQuery.trim()) {
+            router.push(`/events?search=${encodeURIComponent(searchQuery.trim())}`);
+        }
+    };
+
+
     return (
         <main className="relative w-full min-h-[250px] sm:min-h-[400px] lg:min-h-[600px] font-medium">
             {/* Background Image */}
@@ -188,7 +200,9 @@ const Hero = ({hero}: { hero: HeroProps }) => {
             <div
                 className="relative z-10 flex flex-col w-full max-w-screen-2xl mx-auto px-4 py-6 sm:px-6 sm:py-8 md:px-8 md:py-10 lg:px-12 lg:py-14 xl:px-16 xl:py-16 2xl:px-20 2xl:py-20">
                 {/* Navigation */}
-                <Nav/>
+                <div className="z-30">
+                    <Nav/>
+                </div>
 
                 {/* Hero Content */}
                 <section
@@ -203,16 +217,19 @@ const Hero = ({hero}: { hero: HeroProps }) => {
                     {/* Search Bar */}
                     {hero.type === "form" ? (
                         <form
+                            onSubmit={handleSearchSubmit}
                             className="mt-6 sm:mt-8 md:mt-10 w-full max-w-sm sm:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl bg-white rounded-lg flex flex-row items-stretch text-base sm:text-lg">
                             <input
                                 type="text"
                                 placeholder="Search for events, Artists"
                                 className="grow px-3 py-2 sm:px-4 sm:py-3 md:px-5 md:py-4 sm:rounded-l-lg rounded-t-lg sm:rounded-tr-none font-inter font-medium text-[#27337C] outline-none sm:border-r-0 border-b sm:border-b-0 border-gray-300 text-sm sm:text-base md:text-lg"
                                 aria-label="Search for events or artists"
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
                             />
                             <button
                                 type="submit"
-                                className="flex items-center font-inter font-medium text-sm sm:text-base md:text-lg gap-1.5 sm:gap-2 px-4 py-2 sm:px-5 sm:py-3 md:px-6 md:py-4 bg-[#27337C] text-white rounded-r-lg hover:bg-indigo-800 transition-colors duration-200"
+                                className="flex cursor-pointer items-center font-inter font-medium text-sm sm:text-base md:text-lg gap-1.5 sm:gap-2 px-4 py-2 sm:px-5 sm:py-3 md:px-6 md:py-4 bg-[#27337C] text-white rounded-r-lg hover:bg-indigo-800 transition-colors duration-200"
                                 aria-label="Search"
                             >
                                 <Image
