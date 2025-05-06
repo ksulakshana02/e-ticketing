@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 interface PaginationProps {
     currentPage: number;
     totalPages: number;
@@ -26,7 +24,7 @@ const Pagination = ({currentPage, totalPages, onPageChange}: PaginationProps) =>
     };
 
     const getPageNumbers = () => {
-        const maxPagesToShow = 5; // Show up to 5 page numbers
+        const maxPagesToShow = 5;
         const pages: (number | string)[] = [];
         let startPage = Math.max(1, currentPage - 2);
         let endPage = Math.min(totalPages, startPage + maxPagesToShow - 1);
@@ -66,7 +64,7 @@ const Pagination = ({currentPage, totalPages, onPageChange}: PaginationProps) =>
             <ul className="flex items-center gap-2 -space-x-px h-10 text-base">
                 <li>
                     <button
-                        // className="flex items-center justify-center px-4 h-10 leading-tight bg-white border border-[#BCBCBC] rounded-md hover:bg-gray-100 hover:text-gray-700"
+                        // className="flex items-center justify-center px-4 h-10 leading-tight bg-white border-[#BCBCBC] rounded-md hover:bg-gray-100 hover:text-gray-700"
                         onClick={handlePrevious}
                         disabled={currentPage === 1}
                         className={`flex items-center justify-center px-4 h-10 leading-tight bg-white border border-[#BCBCBC] rounded-md ${
@@ -109,30 +107,8 @@ const Pagination = ({currentPage, totalPages, onPageChange}: PaginationProps) =>
                     )
                 )}
 
-                {/*<li>*/}
-                {/*    <Link href="#"*/}
-                {/*       className="flex items-center justify-center px-4 h-10 leading-tight bg-white border border-[#BCBCBC] rounded-md hover:bg-gray-100 hover:text-gray-700">1</Link>*/}
-                {/*</li>*/}
-                {/*<li>*/}
-                {/*    <Link href="#"*/}
-                {/*       className="flex items-center justify-center px-4 h-10 leading-tight bg-white border border-[#BCBCBC] rounded-md hover:bg-gray-100 hover:text-gray-700">2</Link>*/}
-                {/*</li>*/}
-                {/*<li>*/}
-                {/*    <Link href="#" aria-current="page"*/}
-                {/*       className="z-10 flex items-center justify-center px-4 h-10 leading-tight bg-white border border-[#BCBCBC] rounded-md hover:bg-gray-100 hover:text-gray-700">3</Link>*/}
-                {/*</li>*/}
-                {/*<li>*/}
-                {/*    <Link href="#"*/}
-                {/*       className="flex items-center justify-center px-4 h-10 leading-tight bg-white border border-[#BCBCBC] rounded-md hover:bg-gray-100 hover:text-gray-700">4</Link>*/}
-                {/*</li>*/}
-                {/*<li>*/}
-                {/*    <Link href="#"*/}
-                {/*       className="flex items-center justify-center px-4 h-10 leading-tight bg-white border border-[#BCBCBC] rounded-md hover:bg-gray-100 hover:text-gray-700">5</Link>*/}
-                {/*</li>*/}
-
                 <li>
                     <button
-                        // className="flex items-center justify-center px-4 h-10 leading-tight bg-white border border-[#BCBCBC] rounded-md hover:bg-gray-100 hover:text-gray-700"
                         onClick={handleNext}
                         disabled={currentPage === totalPages}
                         className={`flex items-center justify-center px-4 h-10 leading-tight bg-white border border-[#BCBCBC] rounded-md ${

@@ -8,14 +8,6 @@ interface Location {
     name: string;
 }
 
-interface EventFilters {
-    startDate: Date | null;
-    endDate: Date | null;
-    artist: Artist | null;
-    location: Location | null;
-    priceRange: number[];
-}
-
 interface ExtendedEvent {
     image: string;
     title: string;

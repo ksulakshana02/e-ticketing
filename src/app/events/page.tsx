@@ -178,15 +178,15 @@ interface EventFilters {
     priceRange: number[];
 }
 
-interface ExtendedEvent {
-    image: string;
-    title: string;
-    date: string;
-    time: string;
-    location: string;
-    price: string;
-    artist: Artist; // Added artist field
-}
+// interface ExtendedEvent {
+//     image: string;
+//     title: string;
+//     date: string;
+//     time: string;
+//     location: string;
+//     price: string;
+//     artist: Artist; // Added artist field
+// }
 
 const EventsPage = () => {
     const [filters, setFilters] = useState<EventFilters | null>(null);
