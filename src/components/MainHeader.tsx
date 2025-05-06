@@ -170,7 +170,7 @@ const Hero = ({hero}: { hero: HeroProps }) => {
 
 
     return (
-        <main className="relative w-full min-h-[500px] sm:min-h-[600px] font-medium">
+        <main className="relative w-full min-h-[250px] sm:min-h-[400px] lg:min-h-[600px] font-medium">
             {/* Background Image */}
             <Image
                 src={hero.image}
@@ -181,6 +181,8 @@ const Hero = ({hero}: { hero: HeroProps }) => {
                 quality={90}
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, (max-width: 1536px) 100vw, 1920px"
             />
+            <div
+                className="absolute inset-0 bg-gradient-to-r from-[#011C2A]/40 to-[#000000]/40 rounded-b-[40px] sm:rounded-b-[60px] lg:rounded-b-[80px] 2xl:rounded-b-[100px]"></div>
 
             {/* Content */}
             <div
@@ -201,7 +203,7 @@ const Hero = ({hero}: { hero: HeroProps }) => {
                     {/* Search Bar */}
                     {hero.type === "form" ? (
                         <form
-                            className="mt-6 sm:mt-8 md:mt-10 w-full max-w-sm sm:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl bg-white rounded-lg flex flex-col sm:flex-row items-stretch text-base sm:text-lg">
+                            className="mt-6 sm:mt-8 md:mt-10 w-full max-w-sm sm:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl bg-white rounded-lg flex flex-row items-stretch text-base sm:text-lg">
                             <input
                                 type="text"
                                 placeholder="Search for events, Artists"
@@ -210,7 +212,7 @@ const Hero = ({hero}: { hero: HeroProps }) => {
                             />
                             <button
                                 type="submit"
-                                className="flex items-center font-inter font-medium text-sm sm:text-base md:text-lg justify-center gap-1.5 sm:gap-2 px-4 py-2 sm:px-5 sm:py-3 md:px-6 md:py-4 bg-[#27337C] text-white sm:rounded-r-lg rounded-b-lg sm:rounded-bl-none hover:bg-indigo-800 transition-colors duration-200"
+                                className="flex items-center font-inter font-medium text-sm sm:text-base md:text-lg gap-1.5 sm:gap-2 px-4 py-2 sm:px-5 sm:py-3 md:px-6 md:py-4 bg-[#27337C] text-white rounded-r-lg hover:bg-indigo-800 transition-colors duration-200"
                                 aria-label="Search"
                             >
                                 <Image
@@ -232,7 +234,8 @@ const Hero = ({hero}: { hero: HeroProps }) => {
                                     className="text-xs sm:text-sm md:text-base font-inter font-medium text-[#9C9C9C]">DAYS
                                 </div>
                             </div>
-                            <div className="flex-col space-y-4 hidden md:flex md:block justify-center items-center px-1">
+                            <div
+                                className="flex-col space-y-4 hidden md:flex md:block justify-center items-center px-1">
                                 <div className="w-4 h-4 rounded-md bg-white/50"/>
                                 <div className="w-4 h-4 rounded-md bg-white/50"/>
                             </div>
@@ -243,7 +246,8 @@ const Hero = ({hero}: { hero: HeroProps }) => {
                                     className="text-xs sm:text-sm md:text-base font-inter font-medium text-[#9C9C9C]">HOURS
                                 </div>
                             </div>
-                            <div className="hidden md:block md:flex flex-col space-y-4 justify-center items-center px-1">
+                            <div
+                                className="hidden md:block md:flex flex-col space-y-4 justify-center items-center px-1">
                                 <div className="w-4 h-4 rounded-md bg-white/50"/>
                                 <div className="w-4 h-4 rounded-md bg-white/50"/>
                             </div>
@@ -254,7 +258,8 @@ const Hero = ({hero}: { hero: HeroProps }) => {
                                     className="text-xs sm:text-sm md:text-base font-inter font-medium text-[#9C9C9C]">MINS
                                 </div>
                             </div>
-                            <div className="hidden md:block md:flex flex-col space-y-4 justify-center items-center px-1">
+                            <div
+                                className="hidden md:block md:flex flex-col space-y-4 justify-center items-center px-1">
                                 <div className="w-4 h-4 rounded-md bg-white/50"/>
                                 <div className="w-4 h-4 rounded-md bg-white/50"/>
                             </div>

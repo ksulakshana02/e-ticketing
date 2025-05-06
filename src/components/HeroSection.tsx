@@ -58,7 +58,7 @@ const HeroSection = ({hero}: { hero: HeroProps }) => {
             {/*<div*/}
             {/*    className="relative w-full min-h-[300px] sm:min-h-[400px] md:min-h-[500px] lg:min-h-[600px] xl:min-h-[800px] 2xl:min-h-[2000px] font-medium">*/}
             <div
-                className="relative w-full min-h-[500px] sm:min-h-[600px] font-medium"
+                className="relative w-full min-h-[250px] sm:min-h-[400px] lg:min-h-[600px] font-medium"
             >
                 {/* Background Image */}
                 <Image
@@ -70,6 +70,7 @@ const HeroSection = ({hero}: { hero: HeroProps }) => {
                     quality={90}
                     sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 100vw, (max-width: 1536px) 100vw, 2560px"
                 />
+                <div className="absolute inset-0 overflow-hidden bg-gradient-to-r from-[#011C2A]/40 to-[#000000]/40 rounded-b-[20px] sm:rounded-b-[30px] md:rounded-b-[40px] lg:rounded-b-[60px] xl:rounded-b-[80px] 2xl:rounded-b-[100px]"></div>
 
                 {/* Content */}
                 <div
