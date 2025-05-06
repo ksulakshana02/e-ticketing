@@ -262,7 +262,7 @@ const ContactUsPage = () => {
                             className="p-2 sm:p-4 flex flex-col lg:flex-row gap-4 sm:gap-6 bg-white rounded-md shadow-md">
                             {/* Contact Information */}
                             <div
-                                className="w-full lg:w-1/3 bg-[#27337C] text-white p-4 sm:p-6 md:p-8 lg:p-10 rounded-lg">
+                                className="w-full 2xl:w-1/3 lg:2/5 bg-[#27337C] text-white p-4 sm:p-6 md:p-8 lg:p-10 rounded-lg">
                                 <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-[28px] font-inter font-semibold mb-3 sm:mb-4">Contact
                                     Information</h3>
                                 <p className="text-xs sm:text-sm md:text-base lg:text-lg font-normal text-[#C9C9C9] font-inter mb-3 sm:mb-4">Say
@@ -272,20 +272,20 @@ const ContactUsPage = () => {
                                         className="text-xs sm:text-sm lg:text-base font-inter gap-4 flex justify-start items-start">
                                         {/*<Image src="/location.png" alt="location log" height={35} width={35}/>*/}
                                         <svg width="35" height="36" viewBox="0 0 35 36" fill="none"
-                                             className="w-10 h-10"
+                                             className="w-8 h-8 sm:w-10 sm:h-10"
                                              xmlns="http://www.w3.org/2000/svg">
                                             <circle cx="17.5" cy="18.3949" r="17.5" fill="#F6F5FF"/>
                                             <path fillRule="evenodd" clipRule="evenodd"
                                                   d="M17.0003 10.5616C20.2253 10.5616 22.8337 13.1699 22.8337 16.3949C22.8337 20.7699 17.0003 27.2283 17.0003 27.2283C17.0003 27.2283 11.167 20.7699 11.167 16.3949C11.167 13.1699 13.7753 10.5616 17.0003 10.5616ZM12.8337 16.3949C12.8337 18.7699 15.267 22.4033 17.0003 24.6283C18.767 22.3866 21.167 18.7949 21.167 16.3949C21.167 14.0949 19.3003 12.2283 17.0003 12.2283C14.7003 12.2283 12.8337 14.0949 12.8337 16.3949ZM17.0003 18.4783C15.8497 18.4783 14.917 17.5455 14.917 16.3949C14.917 15.2443 15.8497 14.3116 17.0003 14.3116C18.1509 14.3116 19.0837 15.2443 19.0837 16.3949C19.0837 17.5455 18.1509 18.4783 17.0003 18.4783Z"
                                                   fill="#27337C"/>
                                         </svg>
-                                        <span className="max-w-64">
+                                        <span className="max-w-40 sm:max-w-56 2xl:max-w-64">
                                         Lorem ipsum dolor sit amet consectetur. Sed tempus sed, consectetur. Sed tempus sed </span>
                                     </div>
                                     <div
                                         className="text-xs sm:text-sm lg:text-base font-inter gap-4 flex justify-start items-center">
                                         <svg width="35" height="36" viewBox="0 0 35 36" fill="none"
-                                             className="w-10 h-10"
+                                             className="w-8 h-8 sm:w-10 sm:h-10"
                                              xmlns="http://www.w3.org/2000/svg">
                                             <circle cx="17.5" cy="18.3949" r="17.5" fill="#F6F5FF"/>
                                             <path fillRule="evenodd" clipRule="evenodd"
@@ -299,7 +299,7 @@ const ContactUsPage = () => {
                                     <div
                                         className="text-xs sm:text-sm lg:text-base font-inter gap-4 flex justify-start items-start">
                                         <svg width="35" height="36" viewBox="0 0 35 36" fill="none"
-                                             className="w-10 h-10"
+                                             className="w-8 h-8 sm:w-10 sm:h-10"
                                              xmlns="http://www.w3.org/2000/svg">
                                             <circle cx="17.5" cy="18.3949" r="17.5" fill="#F6F5FF"/>
                                             <rect width="24" height="24" transform="translate(5 6.8949)"
@@ -312,7 +312,7 @@ const ContactUsPage = () => {
                                         +94 11 2512069<br/> +94 11 2512069<br/> +94 11 2512069</span>
                                     </div>
                                 </div>
-                                <div className="flex space-x-3 sm:space-x-4 self-end mt-4 sm:mt-6">
+                                <div className="flex space-x-3 sm:space-x-4 relative mt-5 sm:mt-16">
                                     <Link href="#" className="text-white">
                                         <svg width="40" height="40" viewBox="0 0 45 46" fill="none"
                                              className="w-8 h-8 sm:w-10 sm:h-10"
@@ -366,7 +366,7 @@ const ContactUsPage = () => {
                                 </div>
                             </div>
                             {/* Contact Form */}
-                            <div className="w-full lg:w-2/3 p-4 sm:p-6 md:p-8 lg:p-10">
+                            <div className="w-full 2xl:w-2/3 lg:3/5 p-4 sm:p-6 md:p-8 lg:p-10">
                                 <h3 className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-[28px] font-medium text-[#2D3192] mb-3 sm:mb-4">Reach
                                     out to us for any inquiries</h3>
                                 <div className="space-y-4 sm:space-y-6">
