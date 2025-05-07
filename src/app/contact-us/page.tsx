@@ -242,7 +242,7 @@ interface HeroProps {
 const ContactUsPage = () => {
 
     const hero: HeroProps = {
-        image: "/contact-hero.png",
+        image: "/contact-he.png",
         title: "Contact Us",
         subTitle: "Discover your favorite entertainment right here",
     }
@@ -252,9 +252,10 @@ const ContactUsPage = () => {
             <HeroSection hero={hero}/>
             {/*<div*/}
             {/*    className="w-full py-4 sm:py-6 md:py-8 lg:py-10 xl:py-12 bg-[#F4FCFF] rounded-b-[50px] sm:rounded-b-[75px] lg:rounded-b-[100px] mb-2 -mt-20">*/}
-            <div className="py-8 px-4 sm:px-6 lg:px-20 rounded-b-[50px] lg:rounded-b-[100px] -mt-20 bg-[#F4FCFF]">
-                <div className="container mx-auto mt-16 sm:mt-20 px-4 sm:px-6 md:px-8 lg:px-10">
-                    <div className="py-2 sm:py-10 max-w-8xl mx-auto">
+            <div className="py-8 px-4 sm:px-6 lg:px-8 rounded-b-[50px] lg:rounded-b-[100px] -mt-30 bg-[#F4FCFF]">
+                {/*<div className="container mx-auto mt-16 sm:mt-20 px-4 sm:px-6 md:px-8 lg:px-10">*/}
+                <div className="max-w-7xl mx-auto">
+                    <div className="">
                         <SectionTitle title="Contact Us"/>
                     </div>
                     <div className="py-6 sm:py-8 lg:py-10">

@@ -181,7 +181,7 @@ interface EventFilters {
 
 
 const hero: HeroProps = {
-    image: "/event-hero.png",
+    image: "/event-he.png",
     title: "Explore Our Events",
     subTitle: "Discover your favorite entertainment right here",
 };
@@ -241,14 +241,16 @@ const EventsContent = () => {
     const paginatedEvents = filteredEvents.slice(startIndex, startIndex + eventsPerPage);
 
     return (
-        <div className="py-8 px-4 sm:px-6 lg:px-20">
-            <div className="py-2 sm:py-10 px-4 sm:px-6 max-w-7xl mx-auto">
+        <div className="py-8 px-4 sm:px-6 lg:px-8 bg-white">
+            {/*<div className="py-2 sm:py-10 px-4 sm:px-6 max-w-7xl mx-auto">*/}
+            <div className="max-w-7xl mx-auto">
+            <div>
                 <SectionTitle title="Latest Events"/>
             </div>
-            <div className="py-5 px-4 sm:px-6 lg:px-12">
+            <div className="py-6 sm:py-10">
                 <EventFilter onFilterChange={handleFilterChange}/>
             </div>
-            <section className="px-4 sm:px-6 lg:px-8 bg-white">
+            <section className="">
                 <div className="max-w-7xl mx-auto">
                     {paginatedEvents.length > 0 ? (
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
@@ -269,6 +271,7 @@ const EventsContent = () => {
                     totalPages={totalPages}
                     onPageChange={setCurrentPage}
                 />
+            </div>
             </div>
         </div>
     );

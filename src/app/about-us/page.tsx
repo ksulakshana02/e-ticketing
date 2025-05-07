@@ -12,7 +12,7 @@ interface HeroProps {
 const AboutUsPage = () => {
 
     const hero: HeroProps = {
-        image: "/about-hero.png",
+        image: "/about-he.png",
         title: "Who We Are",
         subTitle: "Discover your favorite entertainment right here",
     }
@@ -20,8 +20,10 @@ const AboutUsPage = () => {
     return (
         <div className="min-h-screen">
             <HeroSection hero={hero}/>
-            <div className="w-full py-6 sm:py-8 md:py-10 lg:py-12 xl:py-14 2xl:py-16 px-4 sm:px-6 lg:px-8 bg-white">
-                <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16">
+            {/*<div className="w-full py-6 sm:py-8 md:py-10 lg:py-12 xl:py-14 2xl:py-16 px-4 sm:px-6 lg:px-8 bg-white">*/}
+            <div className="py-8 px-4 sm:px-6 lg:px-8">
+                {/*<div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16">*/}
+                <div className="max-w-7xl mx-auto">
                     <SectionTitle title="About Us"/>
                     <div
                         className="relative mt-12 w-full h-64 sm:h-80 md:h-96 lg:h-[400px] xl:h-[600px] mb-6 sm:mb-8 md:mb-10 lg:mb-12">

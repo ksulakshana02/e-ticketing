@@ -11,7 +11,7 @@ interface HeroProps {
 const EventPage = () => {
 
     const hero: HeroProps = {
-        image: "/event-inner.png",
+        image: "/event-in.png",
         title: "Camellia  Concert",
         subTitle: "Event will start On",
         type: "countdown"

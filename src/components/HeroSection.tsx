@@ -70,23 +70,26 @@ const HeroSection = ({hero}: { hero: HeroProps }) => {
                     quality={90}
                     sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 100vw, (max-width: 1536px) 100vw, 2560px"
                 />
-                <div className="absolute inset-0 overflow-hidden bg-gradient-to-r from-[#011C2A]/40 to-[#000000]/40 rounded-b-[20px] sm:rounded-b-[30px] md:rounded-b-[40px] lg:rounded-b-[60px] xl:rounded-b-[80px] 2xl:rounded-b-[100px]"></div>
+                <div className="absolute inset-0 overflow-hidden bg-gradient-to-r from-[#011C2A]/30 to-[#000000]/30 rounded-b-[20px] sm:rounded-b-[30px] md:rounded-b-[40px] lg:rounded-b-[60px] xl:rounded-b-[80px] 2xl:rounded-b-[100px]"></div>
 
                 {/* Content */}
                 <div
-                    className="relative z-10 flex flex-col w-full max-w-screen-2xl mx-auto px-4 py-6 sm:px-6 sm:py-8 md:px-8 md:py-10 lg:px-12 lg:py-14 xl:px-16 xl:py-16">
+                    // className="relative z-10 flex flex-col w-full max-w-screen-2xl mx-auto px-4 py-6 sm:px-6 sm:py-8 md:px-8 md:py-10 lg:px-12 lg:py-14 xl:px-16 xl:py-16">
+                    className="relative z-10 flex flex-col w-full max-w-screen-2xl mx-auto px-4 py-6 sm:px-6 sm:py-8 md:px-8 md:py-10 lg:px-12 xl:px-16 2xl:px-20">
                     {/* Navigation */}
                     <Nav/>
 
                     {/* Hero Content */}
+                    <div className="justify-center">
                     <div
-                        className="mt-8 sm:mt-10 md:mt-12 lg:mt-16 xl:mt-20 2xl:mt-24 flex flex-col items-center text-center w-full">
+                        className="mt-10 sm:mt-12 md:mt-16 lg:mt-20 xl:mt-[120px] 2xl:mt-32 pt-0.5 lg:pt-8 xl:pt-12 flex flex-col items-center text-center w-full">
                         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl groteskBold text-white leading-6">
                             {hero.title}
                         </h1>
-                        <p className="mt-3 sm:mt-4 text-center md:mt-5 lg:mt-6 text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-inter font-light text-white">
+                        <p className="mt-3 sm:mt-4 md:mt-5 lg:mt-6 text-base sm:text-lg md:text-xl lg:text-2xl text-center font-inter font-light text-white">
                             {hero.subTitle}
                         </p>
+                    </div>
                     </div>
                 </div>
             </div>

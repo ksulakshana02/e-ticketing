@@ -194,11 +194,11 @@ const Hero = ({hero}: { hero: HeroProps }) => {
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, (max-width: 1536px) 100vw, 1920px"
             />
             <div
-                className="absolute inset-0 bg-gradient-to-r from-[#011C2A]/40 to-[#000000]/40 rounded-b-[40px] sm:rounded-b-[60px] lg:rounded-b-[80px] 2xl:rounded-b-[100px]"></div>
+                className="absolute inset-0 bg-gradient-to-r from-[#011C2A]/30 to-[#000000]/30 rounded-b-[40px] sm:rounded-b-[60px] lg:rounded-b-[80px] 2xl:rounded-b-[100px]"></div>
 
             {/* Content */}
             <div
-                className="relative z-10 flex flex-col w-full max-w-screen-2xl mx-auto px-4 py-6 sm:px-6 sm:py-8 md:px-8 md:py-10 lg:px-12 lg:py-14 xl:px-16 xl:py-16 2xl:px-20 2xl:py-20">
+                className="relative z-10 flex flex-col w-full max-w-screen-2xl mx-auto px-4 py-6 sm:px-6 sm:py-8 md:px-8 md:py-10 lg:px-12 xl:px-16 2xl:px-20">
                 {/* Navigation */}
                 <div className="z-30">
                     <Nav/>
@@ -210,7 +210,7 @@ const Hero = ({hero}: { hero: HeroProps }) => {
                     <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl groteskBold text-white leading-6">
                         {hero.title}
                     </h1>
-                    <p className="mt-3 sm:mt-4 md:mt-5 lg:mt-6 text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-inter font-light text-white">
+                    <p className="mt-3 sm:mt-4 md:mt-5 lg:mt-6 text-base sm:text-lg md:text-xl lg:text-2xl font-inter font-light text-white">
                         {hero.subTitle}
                     </p>
 
@@ -218,7 +218,7 @@ const Hero = ({hero}: { hero: HeroProps }) => {
                     {hero.type === "form" ? (
                         <form
                             onSubmit={handleSearchSubmit}
-                            className="mt-6 sm:mt-8 md:mt-10 w-full max-w-sm sm:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl bg-white rounded-lg flex flex-row items-stretch text-base sm:text-lg">
+                            className="mt-6 sm:mt-8 md:mt-10 p-0.5 w-full max-w-sm sm:max-w-md lg:max-w-[476px] bg-white rounded-lg flex flex-row items-stretch text-base sm:text-lg">
                             <input
                                 type="text"
                                 placeholder="Search for events, Artists"
@@ -229,7 +229,7 @@ const Hero = ({hero}: { hero: HeroProps }) => {
                             />
                             <button
                                 type="submit"
-                                className="flex cursor-pointer items-center font-inter font-medium text-sm sm:text-base md:text-lg gap-1.5 sm:gap-2 px-4 py-2 sm:px-5 sm:py-3 md:px-6 md:py-4 bg-[#27337C] text-white rounded-r-lg hover:bg-indigo-800 transition-colors duration-200"
+                                className="flex cursor-pointer items-center font-inter font-medium text-sm sm:text-base md:text-lg gap-1.5 sm:gap-2 px-4 py-2 sm:px-5 sm:py-3 md:px-10 md:py-4 bg-[#27337C] text-white rounded-r-lg hover:bg-indigo-800 transition-colors duration-200"
                                 aria-label="Search"
                             >
                                 <Image

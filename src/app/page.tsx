@@ -16,7 +16,7 @@ interface HeroProps {
 export default function Home() {
 
     const hero: HeroProps = {
-        image: "/hero.png",
+        image: "/home-he.png",
         title: "Let’s Book Your Ticket",
         subTitle: "Discover your favorite entertainment right here",
         type:"form"

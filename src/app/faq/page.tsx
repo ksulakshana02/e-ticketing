@@ -10,7 +10,7 @@ interface HeroProps {
 const FAQ = () => {
 
     const hero: HeroProps = {
-        image: "/faq-hero.png",
+        image: "/faq-he.png",
         title: "Frequently Asked Questions",
         subTitle: "Discover your favorite entertainment right here",
     }
