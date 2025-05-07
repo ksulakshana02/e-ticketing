@@ -131,6 +131,7 @@
 import React, { useRef } from "react";
 import EventCard from "./EventCard";
 import SectionTitle from "./SectionTitle";
+import Link from "next/link";
 
 const TrendingEvents: React.FC = () => {
     const events = [
@@ -253,10 +254,12 @@ const TrendingEvents: React.FC = () => {
                     </button>
                 </div>
                 <div className="flex justify-center mt-4 sm:mt-6">
+                    <Link href="/events">
                     <button
                         className="w-max bg-[#27337C] font-inter font-medium text-xs sm:text-sm text-white py-2 sm:py-3 px-4 sm:px-6 rounded-md hover:bg-blue-800 transition-colors">
                         View More
                     </button>
+                    </Link>
                 </div>
             </div>
         </section>
