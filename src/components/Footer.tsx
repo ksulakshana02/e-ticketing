@@ -15,10 +15,17 @@ const Footer: React.FC = () => {
     ];
 
     const usefulLinks = [
-        {title:"Terms and Conditions", link:"#"},
-        {title:"Privacy Policy", link:"#"},
-        {title:"Refund Policy", link:"#"},
-        {title:"FAQ", link:"/faq"},
+        {title: "Terms and Conditions", link: "#"},
+        {title: "Privacy Policy", link: "#"},
+        {title: "Refund Policy", link: "#"},
+        {title: "FAQ", link: "/faq"},
+    ]
+
+    const socialLinks = [
+        {image: "/facebook.png", link: "#"},
+        {image: "/instagram.png", link: "#"},
+        {image: "/linkedin.png", link: "#"},
+        {image: "/youtube.png", link: "#"},
     ]
 
     return (
@@ -55,15 +62,15 @@ const Footer: React.FC = () => {
                             </p>
                             {/* Social Icons */}
                             <div className="flex gap-4 mt-6">
-                                {["facebook", "instagram", "linkedin", "youtube"].map((social) => (
+                                {socialLinks.map((social, index) => (
                                     <Link
-                                        key={social}
-                                        href="#"
+                                        key={index}
+                                        href={social.link}
                                         className="relative w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-full border border-indigo-900/20 hover:bg-indigo-100 transition-colors"
                                     >
                                         <Image
-                                            src={`/${social}.png`}
-                                            alt={`${social} logo`}
+                                            src={social.image}
+                                            alt={`${social.image} logo`}
                                             fill
                                             style={{objectFit: "contain"}}
                                         />
@@ -186,12 +193,12 @@ const Footer: React.FC = () => {
                         className="flex flex-col md:flex-row gap-5 grotesk justify-between text-base leading-none text-white">
                         <p>Copyright © 2025 Quick Seats.LK Designed</p>
                         <nav className="flex gap-5">
-                            <a href="/privacy" className="hover:text-gray-200">
+                            <Link href="#" className="hover:text-gray-200">
                                 Privacy Policy
-                            </a>
-                            <a href="/terms" className="hover:text-gray-200">
+                            </Link>
+                            <Link href="#" className="hover:text-gray-200">
                                 Terms and Conditions
-                            </a>
+                            </Link>
                         </nav>
                     </div>
                 </div>
