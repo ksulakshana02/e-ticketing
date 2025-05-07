@@ -5,6 +5,22 @@ import Image from "next/image";
 import Link from "next/link";
 
 const Footer: React.FC = () => {
+
+    const pages = [
+        {title: "Events", link: "/events"},
+        {title: "About Us", link: "/about-us"},
+        {title: "Contact Us", link: "/contact-us"},
+        {title: "Sign In", link: "#"},
+        {title: "Sign Up", link: "#"}
+    ];
+
+    const usefulLinks = [
+        {title:"Terms and Conditions", link:"#"},
+        {title:"Privacy Policy", link:"#"},
+        {title:"Refund Policy", link:"#"},
+        {title:"FAQ", link:"/faq"},
+    ]
+
     return (
         <footer className="w-full relative bg-[#F4FCFF]">
             {/* Footer Top */}
@@ -65,15 +81,15 @@ const Footer: React.FC = () => {
                             </div>
                             <div className="mt-4 text-base font-inter font-medium text-[#27337C]">
                                 <ul className="space-y-4">
-                                    {["Events", "About Us", "Contact Us", "Sign In", "Sign Up"].map(
+                                    {pages.map(
                                         (item) => (
-                                            <li key={item}>
-                                                <a
-                                                    href={`/${item.toLowerCase().replace(" ", "")}`}
+                                            <li key={item.title}>
+                                                <Link
+                                                    href={item.link}
                                                     className="hover:text-indigo-700"
                                                 >
-                                                    {item}
-                                                </a>
+                                                    {item.title}
+                                                </Link>
                                             </li>
                                         )
                                     )}
@@ -90,15 +106,15 @@ const Footer: React.FC = () => {
                             </div>
                             <nav className="mt-4 text-base font-inter font-medium text-[#27337C]">
                                 <ul className="space-y-4">
-                                    {["Terms and Conditions", "Privacy Policy", "Refund Policy", "FAQ"].map(
+                                    {usefulLinks.map(
                                         (item) => (
-                                            <li key={item}>
-                                                <a
-                                                    href={`/${item.toLowerCase().replace(" ", "")}`}
+                                            <li key={item.title}>
+                                                <Link
+                                                    href={item.link}
                                                     className="hover:text-indigo-700"
                                                 >
-                                                    {item}
-                                                </a>
+                                                    {item.title}
+                                                </Link>
                                             </li>
                                         )
                                     )}

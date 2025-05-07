@@ -153,6 +153,7 @@ import * as React from "react";
 import EventCard from "@/components/EventCard";
 import {useSearchParams} from "next/navigation";
 import {events} from "@/lib/data"
+import NewsLetter from "@/components/NewsLetter";
 
 interface HeroProps {
     image: string;
@@ -280,6 +281,7 @@ const EventsPage = () => {
             <Suspense fallback={<div className="text-center py-10">Loading events...</div>}>
                 <EventsContent/>
             </Suspense>
+            <NewsLetter/>
         </div>
     );
 };
