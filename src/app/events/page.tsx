@@ -260,7 +260,7 @@ const EventsContent = () => {
                         </div>
                     ) : (
                         <div className="text-center py-10">
-                            <p className="text-gray-500">No events match the selected filters.</p>
+                            <p className="text-gray-500 font-semibold">No events match the selected filters.</p>
                         </div>
                     )}
                 </div>

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, {useRef} from "react";
 
 import EventCard from "@/components/EventCard";
 import SectionTitle from "@/components/SectionTitle";
@@ -71,6 +71,9 @@ const events = [
 ];
 
 const EventsSection = () => {
+
+    const scrollRef = useRef<HTMLDivElement>(null);
+
     return (
         // <section className="py-10 px-4 sm:px-6 md:px-8 bg-white">
         //     <div className="max-w-7xl mx-auto">
@@ -83,13 +86,47 @@ const EventsSection = () => {
         //     </div>
         // </section>
 
-        <section className="py-10 px-4 sm:px-6 lg:px-8 bg-white">
+        <section className="py-6 md:py-10 px-4 sm:px-6 lg:px-8 bg-white">
             <div className="max-w-7xl mx-auto">
                 <SectionTitle title="Upcoming Events"/>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
-                    {events.map((event, index) => (
-                        <EventCard key={index} {...event} />
-                    ))}
+                <div className="hidden lg:block">
+                    <div className="grid lg:grid-cols-4 py-4 gap-6 mt-8">
+                        {events.map((event, index) => (
+                            <EventCard key={index} {...event} />
+                        ))}
+                    </div>
+                </div>
+
+                <div className="block lg:hidden mt-6">
+                    <div
+                        ref={scrollRef}
+                        className="grid grid-flow-col auto-cols-[minmax(280px,1fr)] sm:auto-cols-[minmax(296px,1fr)] gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth py-4 scrollbar-hide"
+                        style={{scrollbarWidth: "none", msOverflowStyle: "none"}}
+                    >
+                        {events.map((event, index) => (
+                            <div key={index} className="snap-start">
+                                <EventCard {...event} />
+                            </div>
+                        ))}
+                    </div>
+
+                    <div
+                        ref={scrollRef}
+                        className="grid grid-flow-col auto-cols-[minmax(280px,1fr)] sm:auto-cols-[minmax(296px,1fr)] gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth py-4 scrollbar-hide"
+                        style={{scrollbarWidth: "none", msOverflowStyle: "none"}}
+                    >
+                        {events.map((event, index) => (
+                            <div key={index} className="snap-start">
+                                <EventCard {...event} />
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                <div className="flex justify-center mt-4 sm:mt-6">
+                    <button
+                        className="w-max bg-[#27337C] font-inter font-medium text-xs sm:text-sm text-white py-2 sm:py-3 px-4 sm:px-6 rounded-md hover:bg-blue-800 transition-colors">
+                        View More
+                    </button>
                 </div>
             </div>
         </section>

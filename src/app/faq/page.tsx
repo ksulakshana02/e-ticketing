@@ -38,20 +38,30 @@ const FAQ = () => {
         }
     ];
 
+    const customStyles = `
+        .faq-details {
+            border: 2px solid transparent;
+        }
+        .faq-details:open {
+            border: 2px solid #27337C;
+        }
+    `;
+
     return (
         <div className="min-h-screen">
+            <style>{customStyles}</style>
             <HeroSection hero={hero}/>
 
             <div className="py-8 px-4 sm:px-6 lg:px-20 rounded-b-[50px] lg:rounded-b-[100px] -mt-20 bg-[#F4FCFF]">
                 <div className="space-y-4 mt-20 mb-10 lg:mb-0">
                     {faqs.map((faq, index) => (
                         <details key={index}
-                                 className="group border-blue-800 drop-shadow-md group-open:border-blue-200 bg-white py-8 px-6"
+                                 className="group rounded-md drop-shadow-md bg-white py-4 px-4 md:py-8 md:px-6 faq-details"
                         >
                             <summary className="flex items-center justify-between gap-1.5">
-                                <h2 className="font-medium font-inter text-lg lg:text-2xl text-[#170F49]">{faq.question}</h2>
+                                <h2 className="font-medium font-inter text-[10px] md:text-lg lg:text-2xl text-[#170F49]">{faq.question}</h2>
                                 <svg width="83" height="83" viewBox="0 0 83 83" fill="none"
-                                     className="w-12 h-12 transition-transform group-open:hidden"
+                                     className="w-6 h-6 md:w-12 md:h-12 transition-transform group-open:hidden"
                                      xmlns="http://www.w3.org/2000/svg">
                                     <g filter="url(#filter0_d_81_1816)">
                                         <circle cx="41.3309" cy="36.3309" r="25.3309" fill="white"/>
@@ -77,7 +87,7 @@ const FAQ = () => {
                                     </defs>
                                 </svg>
                                 <svg width="51" height="51" viewBox="0 0 51 51" fill="none"
-                                     className="w-12 h-12 transition-transform hidden group-open:block"
+                                     className="w-6 h-6 md:w-12 md:h-12 transition-transform hidden group-open:block"
                                      xmlns="http://www.w3.org/2000/svg">
                                     <circle cx="25.3309" cy="25.3309" r="25.3309" fill="#27337C"/>
                                     <path d="M17.0742 22.2212L25.3308 30.4405L33.5874 22.2212" stroke="white"
@@ -87,7 +97,7 @@ const FAQ = () => {
 
                             </summary>
 
-                            <p className="pt-4 text-base lg:text-lg font-sans font-normal text-[#6F6C90]">
+                            <p className="pt-4 text-[8px] md:text-sm lg:text-lg font-inter font-normal text-[#6F6C90]">
                                 {faq.answer}
                             </p>
                         </details>

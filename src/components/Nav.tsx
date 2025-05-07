@@ -31,7 +31,7 @@ const NavigationBar: React.FC = () => {
     };
 
     return (
-        <header className="w-full bg-indigo-900 px-4 py-2 sm:px-6 lg:px-8 rounded-md shadow-md">
+        <header className="w-full bg-indigo-900 px-4 py-0.5 lg:py-1 sm:px-6 lg:px-20 rounded-md shadow-md">
             <div className="mx-auto flex max-w-screen-2xl items-center justify-between">
                 {/* Logo - Responsive sizing */}
                 <div className="flex items-center">
@@ -40,7 +40,7 @@ const NavigationBar: React.FC = () => {
                         alt="Logo"
                         width={120}
                         height={60}
-                        className="object-contain sm:w-[140px] lg:w-[160px]"
+                        className="object-contain h-auto sm:w-[130px] lg:w-[150px]"
                         priority
                     />
                 </div>
@@ -53,7 +53,7 @@ const NavigationBar: React.FC = () => {
                     aria-expanded={isMobileMenuOpen}
                 >
                     <svg
-                        className="w-7 h-7 sm:w-8 sm:h-8"
+                        className="w-5 h-5 sm:w-8 sm:h-8"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -86,7 +86,7 @@ const NavigationBar: React.FC = () => {
                         ))}
                     </nav>
                 </div>
-                <div className="hidden lg:flex lg:items-center flex flex-row gap-2 xl:gap-3">
+                <div className="hidden lg:flex lg:items-center flex flex-row gap-2 xl:gap-4">
                     <motion.button
                         className="px-4 py-2 xl:px-6 xl:py-2.5 text-white font-inter text-sm xl:text-base font-medium border-2 border-white rounded-md hover:bg-indigo-800 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white"
                         whileHover={{scale: 1.05}}

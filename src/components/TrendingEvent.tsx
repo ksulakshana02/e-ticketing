@@ -209,15 +209,15 @@ const TrendingEvents: React.FC = () => {
     };
 
     return (
-        <section className="py-8 px-4 sm:px-6 lg:px-8 bg-white">
+        <section className="py-6 md:py-10 px-4 sm:px-6 lg:px-8 bg-white">
             <div className="max-w-7xl mx-auto">
-                <SectionTitle title="Trending Events" />
+                <SectionTitle title="Trending Events"/>
                 <div className="relative mt-6">
                     {/* Slider Container */}
                     <div
                         ref={scrollRef}
                         className="grid grid-flow-col auto-cols-[minmax(280px,1fr)] sm:auto-cols-[minmax(296px,1fr)] gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth py-4 scrollbar-hide"
-                        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+                        style={{scrollbarWidth: "none", msOverflowStyle: "none"}}
                     >
                         {events.map((event, index) => (
                             <div key={index} className="snap-start">
@@ -233,8 +233,10 @@ const TrendingEvents: React.FC = () => {
                         aria-label="Scroll left"
                     >
                         <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="25" cy="25" r="23.5" transform="rotate(-180 25 25)" fill="#F4FCFF" stroke="white" strokeWidth="3" />
-                            <path d="M27.1429 18.5714L21.4286 25L27.1429 31.4286" stroke="#27337C" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+                            <circle cx="25" cy="25" r="23.5" transform="rotate(-180 25 25)" fill="#F4FCFF"
+                                    stroke="white" strokeWidth="3"/>
+                            <path d="M27.1429 18.5714L21.4286 25L27.1429 31.4286" stroke="#27337C" strokeWidth="3"
+                                  strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
                     </button>
                     <button
@@ -243,9 +245,17 @@ const TrendingEvents: React.FC = () => {
                         aria-label="Scroll right"
                     >
                         <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="25" cy="25" r="23.5" transform="matrix(1 0 0 -1 0 50)" fill="#F4FCFF" stroke="white" strokeWidth="3" />
-                            <path d="M22.8571 18.5714L28.5714 25L22.8571 31.4286" stroke="#27337C" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+                            <circle cx="25" cy="25" r="23.5" transform="matrix(1 0 0 -1 0 50)" fill="#F4FCFF"
+                                    stroke="white" strokeWidth="3"/>
+                            <path d="M22.8571 18.5714L28.5714 25L22.8571 31.4286" stroke="#27337C" strokeWidth="3"
+                                  strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
+                    </button>
+                </div>
+                <div className="flex justify-center mt-4 sm:mt-6">
+                    <button
+                        className="w-max bg-[#27337C] font-inter font-medium text-xs sm:text-sm text-white py-2 sm:py-3 px-4 sm:px-6 rounded-md hover:bg-blue-800 transition-colors">
+                        View More
                     </button>
                 </div>
             </div>

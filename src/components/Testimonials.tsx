@@ -128,7 +128,7 @@ const Testimonials: React.FC = () => {
                         </div>
                     </TranslateWrapper>
                 </div>
-                <div className="flex mt-8">
+                <div className="hidden lg:block flex mt-8">
                     <TranslateWrapper duration={35}>
                         <div className="flex gap-10">
                             {duplicatedTestimonials.map((testimonial, index) => (
