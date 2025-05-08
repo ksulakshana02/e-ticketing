@@ -55,3 +55,17 @@
     font-family: "ClashGrotesk", sans-serif;
     font-weight: 400;
 }
+
+
+.custom-date-range .rdrSelected,
+.custom-date-range .rdrInRange,
+.custom-date-range .rdrDayInRange,
+.custom-date-range .rdrDayStartPreview,
+.custom-date-range .rdrDayEndPreview,
+.custom-date-range .rdrDayInPreview {
+    background-color: #27337C !important;
+    border-color: #27337C !important;
+}
+.custom-date-range .rdrDayToday .rdrDayNumber span:after {
+    background: #27337C !important;
+}
