@@ -87,20 +87,24 @@ const NavigationBar: React.FC = () => {
                     </nav>
                 </div>
                 <div className="hidden lg:flex lg:items-center flex flex-row gap-2 xl:gap-4">
-                    <motion.button
-                        className="px-4 py-2 xl:px-6 xl:py-2.5 text-white font-inter text-sm xl:text-base font-medium border-2 border-white rounded-md hover:bg-indigo-800 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white"
-                        whileHover={{scale: 1.05}}
-                        whileTap={{scale: 0.95}}
-                    >
-                        Sign Up
-                    </motion.button>
-                    <motion.button
-                        className="px-4 py-2 xl:px-6 xl:py-2.5 text-indigo-900 font-inter text-sm xl:text-base font-medium bg-white border-2 border-white rounded-md hover:bg-gray-200 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white"
-                        whileHover={{scale: 1.05}}
-                        whileTap={{scale: 0.95}}
-                    >
-                        Sign In
-                    </motion.button>
+                    <Link href="/register">
+                        <motion.button
+                            className="px-4 py-2 xl:px-6 xl:py-2.5 text-white font-inter text-sm xl:text-base font-medium border-2 border-white rounded-md hover:bg-indigo-800 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white"
+                            whileHover={{scale: 1.05}}
+                            whileTap={{scale: 0.95}}
+                        >
+                            Sign Up
+                        </motion.button>
+                    </Link>
+                    <Link href="/login">
+                        <motion.button
+                            className="px-4 py-2 xl:px-6 xl:py-2.5 text-indigo-900 font-inter text-sm xl:text-base font-medium bg-white border-2 border-white rounded-md hover:bg-gray-200 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white"
+                            whileHover={{scale: 1.05}}
+                            whileTap={{scale: 0.95}}
+                        >
+                            Sign In
+                        </motion.button>
+                    </Link>
                 </div>
             </div>
 
@@ -130,26 +134,30 @@ const NavigationBar: React.FC = () => {
                                 </Link>
                             ))}
                             <div className="flex flex-col gap-3 pt-2">
-                                <motion.button
-                                    className="px-4 py-2 text-white font-inter text-base font-medium border-2 border-white rounded-md hover:bg-indigo-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white"
-                                    variants={itemVariants}
-                                    initial="closed"
-                                    animate="open"
-                                    transition={{delay: menuItems.length * 0.1}}
-                                    onClick={toggleMobileMenu}
-                                >
-                                    Sign Up
-                                </motion.button>
-                                <motion.button
-                                    className="px-4 py-2 text-indigo-900 font-inter text-base font-medium bg-white border-2 border-white rounded-md hover:bg-gray-200 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white"
-                                    variants={itemVariants}
-                                    initial="closed"
-                                    animate="open"
-                                    transition={{delay: (menuItems.length + 1) * 0.1}}
-                                    onClick={toggleMobileMenu}
-                                >
-                                    Sign In
-                                </motion.button>
+                                <Link href="/register">
+                                    <motion.button
+                                        className="px-4 py-2 text-white font-inter text-base font-medium border-2 border-white rounded-md hover:bg-indigo-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white"
+                                        variants={itemVariants}
+                                        initial="closed"
+                                        animate="open"
+                                        transition={{delay: menuItems.length * 0.1}}
+                                        onClick={toggleMobileMenu}
+                                    >
+                                        Sign Up
+                                    </motion.button>
+                                </Link>
+                                <Link href="/login">
+                                    <motion.button
+                                        className="px-4 py-2 text-indigo-900 font-inter text-base font-medium bg-white border-2 border-white rounded-md hover:bg-gray-200 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white"
+                                        variants={itemVariants}
+                                        initial="closed"
+                                        animate="open"
+                                        transition={{delay: (menuItems.length + 1) * 0.1}}
+                                        onClick={toggleMobileMenu}
+                                    >
+                                        Sign In
+                                    </motion.button>
+                                </Link>
                             </div>
                         </div>
                     </motion.nav>

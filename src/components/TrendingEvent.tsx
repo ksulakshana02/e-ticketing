@@ -217,7 +217,7 @@ const TrendingEvents: React.FC = () => {
                     {/* Slider Container */}
                     <div
                         ref={scrollRef}
-                        className="grid grid-flow-col auto-cols-[minmax(280px,1fr)] sm:auto-cols-[minmax(296px,1fr)] gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth py-4 scrollbar-hide"
+                        className="grid grid-flow-col auto-cols-[minmax(280px,1fr)] sm:auto-cols-[minmax(310px,1fr)] gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth py-4 scrollbar-hide"
                         style={{scrollbarWidth: "none", msOverflowStyle: "none"}}
                     >
                         {events.map((event, index) => (

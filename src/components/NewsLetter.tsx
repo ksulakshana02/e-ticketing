@@ -119,10 +119,51 @@
 //
 // export default Newsletters;
 
+"use client"
 import Image from "next/image";
-import React from "react";
+import React, {useState, useCallback} from "react";
 
 const Newsletters = () => {
+
+    const [email, setEmail] = useState("");
+    const [message, setMessage] = useState<{ text: string; type: "success" | "error" | null }>({text: "", type: null});
+
+    // Mock API call to simulate subscription
+    const subscribeToNewsletter = async (email: string): Promise<{ success: boolean; message: string }> => {
+        // Replace this with your actual API call
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                if (email.includes("@") && email.includes(".")) {
+                    resolve({success: true, message: "Successfully subscribed!"});
+                } else {
+                    resolve({success: false, message: "Invalid email address."});
+                }
+            }, 1000);
+        });
+    };
+
+    const handleSubscribe = useCallback(async (e: React.FormEvent) => {
+        e.preventDefault();
+        setMessage({text: "", type: null});
+
+        if (!email) {
+            setMessage({text: "Please enter an email address.", type: "error"});
+            return;
+        }
+
+        try {
+            const response = await subscribeToNewsletter(email);
+            if (response.success) {
+                setMessage({text: response.message, type: "success"});
+                setEmail(""); // Clear input on success
+            } else {
+                setMessage({text: response.message, type: "error"});
+            }
+        } catch (error) {
+            setMessage({text: "An error occurred. Please try again.", type: "error"});
+        }
+    }, [email]);
+
     return (
         <div className="w-full py-8 sm:py-10 md:py-12 lg:py-16 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
             <div className="relative max-w-screen-xl container mx-auto overflow-hidden rounded-lg">
@@ -146,31 +187,73 @@ const Newsletters = () => {
 
                 {/* Content container with responsive spacing */}
                 <div
-                    className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-4 sm:px-8 md:px-12 lg:px-16">
+                    className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center lg:ml-44 px-4 sm:px-8 md:px-12 lg:px-16">
                     <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold text-white mb-3 sm:mb-4 md:mb-6">
                         Subscribe Our Newsletter
                     </h2>
 
-                    <p className="text-white/90 text-xs sm:text-sm md:text-base lg:text-lg max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl mx-auto mb-6 sm:mb-8 md:mb-10">
+                    <p className="text-white/90 text-xs sm:text-sm md:text-base lg:text-lg max-w-md sm:max-w-lg md:max-w-xl lg:max-w-4xl mx-auto mb-6 sm:mb-8 md:mb-10">
                         Lorem ipsum dolor sit amet consectetur. Ut pulvinar ullamcorper enim vulputate. Facilisi
                         bibendum vulputate Lorem ipsum dolor sit amet consectetur. Ut pulvinar ullamcorper enim
                         vulputate.
                     </p>
 
-                    <div className="w-full max-w-xs sm:max-w-sm bg-white rounded-md md:max-w-md lg:max-w-xl relative">
-                        <input
-                            type="email"
-                            placeholder="Enter your email ..."
-                            className="w-full h-10 sm:h-12 md:h-14 px-3 sm:px-4 rounded-md text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#27337C]"
-                            aria-label="Email address"
-                        />
-                        <button
-                            className="absolute right-1 top-1 bottom-1 bg-[#27337C] hover:bg-[#1c255b] transition-colors px-2 sm:px-3 md:px-4 lg:px-6 rounded-md text-white font-medium text-xs sm:text-sm md:text-base whitespace-nowrap"
-                            aria-label="Subscribe to newsletter"
-                        >
-                            Subscribe Now
-                        </button>
-                    </div>
+                    {/*<form onSubmit={handleSubscribe} className="w-full max-w-xs sm:max-w-sm bg-white rounded-md md:max-w-md lg:max-w-xl relative">*/}
+                    {/*    <input*/}
+                    {/*        type="email"*/}
+                    {/*        placeholder="Enter your email ..."*/}
+                    {/*        className="w-full h-10 sm:h-12 md:h-14 px-3 sm:px-4 rounded-md text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#27337C]"*/}
+                    {/*        aria-label="Email address"*/}
+                    {/*        value={email}*/}
+                    {/*        onChange={(e) => setEmail(e.target.value)}*/}
+                    {/*    />*/}
+                    {/*    <button*/}
+                    {/*        type="submit"*/}
+                    {/*        className="absolute right-1 top-1 bottom-1 bg-[#27337C] hover:bg-[#1c255b] transition-colors px-2 sm:px-3 md:px-4 lg:px-6 rounded-md text-white font-medium text-xs sm:text-sm md:text-base whitespace-nowrap"*/}
+                    {/*        aria-label="Subscribe to newsletter"*/}
+                    {/*    >*/}
+                    {/*        Subscribe Now*/}
+                    {/*    </button>*/}
+                    {/*    {message.text && (*/}
+                    {/*        <p*/}
+                    {/*            className={`mt-3 text-sm ${*/}
+                    {/*                message.type === "success" ? "text-green-500" : "text-red-500"*/}
+                    {/*            }`}*/}
+                    {/*        >*/}
+                    {/*            {message.text}*/}
+                    {/*        </p>*/}
+                    {/*    )}*/}
+                    {/*</form>*/}
+
+                    <form onSubmit={handleSubscribe} className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-xl">
+                        <div className="relative bg-white rounded-md">
+                            <input
+                                type="email"
+                                placeholder="Enter your email ..."
+                                className="w-full h-10 sm:h-12 md:h-14 px-3 sm:px-4 rounded-md text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#27337C]"
+                                aria-label="Email address"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+                            <button
+                                type="submit"
+                                className="absolute right-1 top-1 bottom-1 bg-[#27337C] hover:bg-[#1c255b] transition-colors px-2 sm:px-3 md:px-4 lg:px-6 rounded-md text-white font-medium text-xs sm:text-sm md:text-base whitespace-nowrap"
+                                aria-label="Subscribe to newsletter"
+                            >
+                                Subscribe Now
+                            </button>
+                        </div>
+                        {message.text && (
+                            <p
+                                className={`mt-3 text-sm ${
+                                    message.type === "success" ? "text-green-500" : "text-red-500"
+                                }`}
+                            >
+                                {message.text}
+                            </p>
+                        )}
+                    </form>
+
                 </div>
             </div>
         </div>

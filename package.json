@@ -16,10 +16,12 @@
     "@mui/material": "^7.0.2",
     "@mui/x-date-pickers": "^8.2.0",
     "@mui/x-date-pickers-pro": "^8.2.0",
+    "country-list": "^2.3.0",
     "date-fns": "^4.1.0",
     "framer-motion": "^12.9.2",
     "next": "15.3.1",
     "react": "^19.0.0",
+    "react-country-flag": "^3.1.0",
     "react-date-range": "^2.0.1",
     "react-dom": "^19.0.0",
     "yup": "^1.6.1"
@@ -27,6 +29,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
+    "@types/country-list": "^2.1.4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

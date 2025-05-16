@@ -206,7 +206,7 @@ const Hero = ({hero}: { hero: HeroProps }) => {
 
                 {/* Hero Content */}
                 <section
-                    className="mt-8 sm:mt-10 md:mt-12 lg:mt-16 xl:mt-20 2xl:mt-24 flex flex-col items-start max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl">
+                    className="mt-8 sm:mt-10 md:mt-12 lg:mt-16 xl:mt-20 2xl:mt-24 py-6 sm:py-8 md:py-12 flex flex-col items-start max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl">
                     <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl groteskBold text-white leading-6">
                         {hero.title}
                     </h1>

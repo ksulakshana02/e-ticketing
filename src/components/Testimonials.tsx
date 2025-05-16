@@ -102,8 +102,8 @@ const Testimonials: React.FC = () => {
     const duplicatedTestimonials = [...testimonials, ...testimonials];
 
     return (
-        <section className="py-8 px-4 sm:px-6 lg:px-8 bg-white">
-            <div className="max-w-7xl mb-6 mx-auto">
+        <section className="py-8 bg-white">
+            <div className="max-w-7xl mb-4 lg:mb-8 mx-auto">
                 <SectionTitle title="What People Say"/>
             </div>
             {/*<div className="grid grid-cols-1 sm:grid-cols-2 mt-6 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">*/}
