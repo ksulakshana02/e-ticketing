@@ -93,7 +93,7 @@ const NavigationBar: React.FC = () => {
                             whileHover={{scale: 1.05}}
                             whileTap={{scale: 0.95}}
                         >
-                            Sign Up
+                            Register
                         </motion.button>
                     </Link>
                     <Link href="/login">
@@ -143,7 +143,7 @@ const NavigationBar: React.FC = () => {
                                         transition={{delay: menuItems.length * 0.1}}
                                         onClick={toggleMobileMenu}
                                     >
-                                        Sign Up
+                                        Register
                                     </motion.button>
                                 </Link>
                                 <Link href="/login">
