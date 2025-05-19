@@ -114,7 +114,7 @@
 
 "use client";
 import React, { forwardRef, useImperativeHandle, useCallback, memo } from "react";
-import { useForm, Controller } from "react-hook-form";
+import {useForm, Controller, Control} from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
@@ -149,7 +149,7 @@ const InputField: React.FC<{
     id: keyof ProfilePassword;
     type: string;
     placeholder: string;
-    control: any;
+    control: Control<ProfilePassword>;
     error?: string;
 }> = memo(({ label, id, type, placeholder, control, error }) => {
     return (
