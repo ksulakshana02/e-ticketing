@@ -194,7 +194,7 @@ const Hero = ({hero}: { hero: HeroProps }) => {
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, (max-width: 1536px) 100vw, 1920px"
             />
             <div
-                className="absolute inset-0 bg-gradient-to-r from-[#011C2A]/30 to-[#000000]/30 rounded-b-[40px] sm:rounded-b-[60px] lg:rounded-b-[80px] 2xl:rounded-b-[100px]"></div>
+                className="absolute inset-0 bg-gradient-to-r from-[#011C2A]/20 to-[#000000]/20 rounded-b-[40px] sm:rounded-b-[60px] lg:rounded-b-[80px] 2xl:rounded-b-[100px]"></div>
 
             {/* Content */}
             <div
@@ -206,7 +206,7 @@ const Hero = ({hero}: { hero: HeroProps }) => {
 
                 {/* Hero Content */}
                 <section
-                    className="mt-8 sm:mt-10 md:mt-12 lg:mt-16 xl:mt-20 2xl:mt-24 py-6 sm:py-8 md:py-12 flex flex-col items-start max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl">
+                    className="mt-8 sm:mt-10 md:mt-12 lg:mt-16 xl:mt-20 2xl:mt-24 py-6 sm:py-8 md:pb-10 md:pt-28 flex flex-col items-start max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl">
                     <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl groteskBold text-white leading-6">
                         {hero.title}
                     </h1>
@@ -243,7 +243,7 @@ const Hero = ({hero}: { hero: HeroProps }) => {
                             </button>
                         </form>
                     ) : hero.type === "countdown" ? (
-                        <div className="flex justify-start gap-2 mt-4">
+                        <div className="flex justify-start gap-2 mt-10">
                             <div className="bg-white text-blue-900 p-2 sm:p-4 rounded-lg text-center w-15 sm:w-20">
                                 <div
                                     className="text-lg sm:text-xl md:text-2xl lg:text-4xl font-inter text-[#2D3192] font-bold">{countdown.days}</div>
