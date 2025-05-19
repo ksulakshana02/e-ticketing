@@ -147,7 +147,7 @@
 import {Suspense, useState} from "react";
 import HeroSection from "@/components/HeroSection";
 import Pagination from "@/components/Pagination";
-import EventFilter from "@/components/Filter";
+// import EventFilter from "@/components/Filter";
 import SectionTitle from "@/components/SectionTitle";
 import * as React from "react";
 import EventCard from "@/components/EventCard";
@@ -193,10 +193,10 @@ const EventsContent = () => {
     const searchParams = useSearchParams();
     const searchQuery = searchParams.get("search")?.toLowerCase() || "";
 
-    const handleFilterChange = (newFilters: EventFilters) => {
-        setFilters(newFilters);
-        setCurrentPage(1);
-    };
+    // const handleFilterChange = (newFilters: EventFilters) => {
+    //     setFilters(newFilters);
+    //     setCurrentPage(1);
+    // };
 
     // Function to parse price from string to number
     const parsePrice = (price: string): number => {
@@ -248,7 +248,7 @@ const EventsContent = () => {
                 <SectionTitle title="Latest Events"/>
             </div>
             <div className="py-6 sm:py-10">
-                <EventFilter onFilterChange={handleFilterChange}/>
+                {/*<EventFilter onFilterChange={handleFilterChange}/>*/}
             </div>
             <section className="">
                 <div className="max-w-7xl mx-auto">
