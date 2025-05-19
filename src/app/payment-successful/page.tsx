@@ -51,7 +51,7 @@ const PaymentSuccessful = () => {
                                 A confirmation email with your QR code has been sent to your inbox.
                                 Please check your email and keep the QR code ready for event entry.
                             </p>
-                            <hr className="mx-0 my-2.5 w-full h-px bg-[#E7E7E7]"/>
+                            <hr className="mx-0 my-2.5 w-full h-px bg-[#E7E7E7]/50"/>
                         </section>
 
                         <div className="flex gap-10 justify-between mt-5 w-full max-md:flex-col max-md:gap-8">
