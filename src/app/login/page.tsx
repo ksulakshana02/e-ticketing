@@ -2,6 +2,9 @@
 import HeroSection from "@/components/HeroSection";
 import SectionTitle from "@/components/SectionTitle";
 import React, {useState} from "react";
+import {useForm} from "react-hook-form";
+import {z} from "zod";
+import {zodResolver} from "@hookform/resolvers/zod";
 
 interface HeroProps {
     image: string;
@@ -9,17 +12,29 @@ interface HeroProps {
     subTitle: string
 }
 
-interface FormData {
-    email: string;
-    password: string;
-}
+
+const loginSchema = z
+    .object({
+        email: z.string().email("Invalid email address"),
+        password: z
+            .string()
+            .min(8, "Password must be at least 8 characters"),
+    });
+
+
+type FormData = z.infer<typeof loginSchema>;
+
+// interface FormData {
+//     email: string;
+//     password: string;
+// }
 
 const LoginPage = () => {
 
-    const [formData, setFormData] = useState<FormData>({
-        email: '',
-        password: '',
-    });
+    // const [formData, setFormData] = useState<FormData>({
+    //     email: '',
+    //     password: '',
+    // });
 
     const [showPassword, setShowPassword] = useState<boolean>(false);
     const [rememberMe, setRememberMe] = useState<boolean>(false);
@@ -30,24 +45,48 @@ const LoginPage = () => {
         subTitle: "Discover your favorite entertainment right here",
     }
 
+    const {
+        register,
+        handleSubmit,
+        reset,
+        formState: {errors},
+    } = useForm<FormData>({
+        resolver: zodResolver(loginSchema),
+        defaultValues: {
+            email: "",
+            password: "",
+        },
+    });
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const {name, value} = e.target;
-        setFormData((prevData) => ({
-            ...prevData,
-            [name]: value,
-        }));
+
+    // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //     const {name, value} = e.target;
+    //     setFormData((prevData) => ({
+    //         ...prevData,
+    //         [name]: value,
+    //     }));
+    // };
+
+    const onSubmit = async (data: FormData) => {
+        try {
+            console.log("Form Data:", data);
+            reset();
+        } catch (error) {
+            console.error("Submission error:", error);
+        }
     };
 
     const handleRememberMe = (e: React.ChangeEvent<HTMLInputElement>) => {
         setRememberMe(e.target.checked);
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        // Add your form submission logic here
-        console.log('Form Data:', formData);
-    };
+    // const handleSubmit = (e: React.FormEvent) => {
+    //     e.preventDefault();
+    //     // Add your form submission logic here
+    //     console.log('Form Data:', formData);
+    // };
+
+    const errorClass = "text-sm text-red-500 mt-1 font-inter";
 
     return (
         <div className="min-h-screen">
@@ -55,7 +94,8 @@ const LoginPage = () => {
             <div className="py-8 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-7xl mx-auto">
                     <SectionTitle title="Sign In"/>
-                    <form onSubmit={handleSubmit} className="space-y-4 max-w-[406px] justify-center mx-auto mt-12">
+                    <form onSubmit={handleSubmit(onSubmit)} noValidate
+                          className="space-y-4 max-w-[406px] justify-center mx-auto mt-12">
                         {/* Email */}
                         <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-18">
                             <div className="w-full">
@@ -85,14 +125,15 @@ const LoginPage = () => {
                                     <input
                                         type="email"
                                         id="email"
-                                        name="email"
-                                        value={formData.email}
-                                        onChange={handleChange}
+                                        {...register("email")}
                                         placeholder="Enter your email address"
                                         className="w-full px-4 py-2 rounded-lg font-inter font-normal text-base text-[#505050] focus:outline-none"
                                     />
 
                                 </div>
+                                {errors.email && (
+                                    <p className={errorClass}>{errors.email.message}</p>
+                                )}
                             </div>
                         </div>
 
@@ -122,9 +163,7 @@ const LoginPage = () => {
                                     <input
                                         type={showPassword ? 'text' : 'password'}
                                         id="password"
-                                        name="password"
-                                        value={formData.password}
-                                        onChange={handleChange}
+                                        {...register("password")}
                                         placeholder="Create a password"
                                         className="w-full px-4 py-2 rounded-lg font-inter font-normal text-base text-[#505050] focus:outline-none"
                                     />
@@ -158,6 +197,9 @@ const LoginPage = () => {
                                     }
                                 </button>
                             </div>
+                            {errors.password && (
+                                <p className={errorClass}>{errors.password.message}</p>
+                            )}
                         </div>
 
                         {/* Remember Me and Forgot Password */}
@@ -165,7 +207,7 @@ const LoginPage = () => {
                             <div className="flex items-center">
                                 <input
                                     id="rememberMe"
-                                    type="checkbox"
+                                    type="radio"
                                     checked={rememberMe}
                                     onChange={handleRememberMe}
                                     className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-full focus:ring-blue-500"
@@ -182,7 +224,7 @@ const LoginPage = () => {
                         {/* Submit Button */}
                         <button
                             type="submit"
-                            className="w-full px-4 py-5 mt-4 text-white font-inter text-sm font-normal bg-[#2D3192] rounded-md hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500"
+                            className="w-full cursor-pointer px-4 py-5 mt-4 text-white font-inter text-sm font-normal bg-[#2D3192] rounded-md hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500"
                         >
                             Log in
                         </button>

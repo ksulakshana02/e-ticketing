@@ -4,6 +4,9 @@ import SectionTitle from "@/components/SectionTitle";
 import React, {useState} from "react";
 import ReactCountryFlag from "react-country-flag";
 import {getCode} from "country-list";
+import {useForm} from "react-hook-form";
+import {z} from "zod";
+import {zodResolver} from "@hookform/resolvers/zod";
 
 interface HeroProps {
     image: string;
@@ -11,29 +14,65 @@ interface HeroProps {
     subTitle: string
 }
 
-interface FormData {
-    firstName: string;
-    lastName: string;
-    contactNumber: string;
-    nicPassport: string;
-    email: string;
-    country: string;
-    password: string;
-    confirmPassword: string;
-}
+const registerSchema = z
+    .object({
+        firstName: z
+            .string()
+            .min(2, "First name must be at least 2 characters")
+            .max(50, "First name must be less than 50 characters"),
+        lastName: z
+            .string()
+            .min(2, "Last name must be at least 2 characters")
+            .max(50, "Last name must be less than 50 characters"),
+        contactNumber: z
+            .string()
+            .regex(/^\+?[\d\s-]{10,}$/, "Invalid phone number format"),
+        nicPassport: z
+            .string()
+            .min(5, "NIC/Passport must be at least 5 characters")
+            .max(20, "NIC/Passport must be less than 20 characters"),
+        email: z.string().email("Invalid email address"),
+        country: z.string().min(2, "Please enter a valid country"),
+        password: z
+            .string()
+            .min(8, "Password must be at least 8 characters")
+            .regex(
+                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
+                "Password must contain at least one uppercase letter, one lowercase letter, and one number"
+            ),
+        confirmPassword: z.string(),
+    })
+    .refine((data) => data.password === data.confirmPassword, {
+        message: "Passwords do not match",
+        path: ["confirmPassword"],
+    });
+
+// Infer form data type from schema
+type FormData = z.infer<typeof registerSchema>;
+
+// interface FormData {
+//     firstName: string;
+//     lastName: string;
+//     contactNumber: string;
+//     nicPassport: string;
+//     email: string;
+//     country: string;
+//     password: string;
+//     confirmPassword: string;
+// }
 
 const RegisterPage = () => {
 
-    const [formData, setFormData] = useState<FormData>({
-        firstName: '',
-        lastName: '',
-        contactNumber: '',
-        nicPassport: '',
-        email: '',
-        country: '',
-        password: '',
-        confirmPassword: '',
-    });
+    // const [formData, setFormData] = useState<FormData>({
+    //     firstName: '',
+    //     lastName: '',
+    //     contactNumber: '',
+    //     nicPassport: '',
+    //     email: '',
+    //     country: '',
+    //     password: '',
+    //     confirmPassword: '',
+    // });
 
     const [showPassword, setShowPassword] = useState<boolean>(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState<boolean>(false);
@@ -44,22 +83,55 @@ const RegisterPage = () => {
         subTitle: "Discover your favorite entertainment right here",
     }
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const {name, value} = e.target;
-        setFormData((prevData) => ({
-            ...prevData,
-            [name]: value,
-        }));
+    const {
+        register,
+        handleSubmit,
+        watch,
+        reset,
+        formState: {errors},
+    } = useForm<FormData>({
+        resolver: zodResolver(registerSchema),
+        defaultValues: {
+            firstName: "",
+            lastName: "",
+            contactNumber: "",
+            nicPassport: "",
+            email: "",
+            country: "",
+            password: "",
+            confirmPassword: "",
+        },
+    });
+
+    const countryValue = watch("country");
+
+    const onSubmit = async (data: FormData) => {
+        try {
+            console.log("Form Data:", data);
+            reset();
+        } catch (error) {
+            console.error("Submission error:", error);
+        }
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        console.log('Form Data:', formData);
-    };
+    // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //     const {name, value} = e.target;
+    //     setFormData((prevData) => ({
+    //         ...prevData,
+    //         [name]: value,
+    //     }));
+    // };
+
+    // const handleSubmit = (e: React.FormEvent) => {
+    //     e.preventDefault();
+    //     console.log('Form Data:', formData);
+    // };
 
     const getCountryCode = (countryName: string): string | undefined => {
         return getCode(countryName);
     };
+
+    const errorClass = "text-sm text-red-500 mt-1 font-inter";
 
     return (
         <div className="min-h-screen">
@@ -68,7 +140,8 @@ const RegisterPage = () => {
                 <div className="max-w-7xl mx-auto">
                     <SectionTitle title="Register"/>
 
-                    <form onSubmit={handleSubmit} className="space-y-4 max-w-[960px] justify-center mx-auto mt-12">
+                    <form onSubmit={handleSubmit(onSubmit)} noValidate
+                          className="space-y-4 max-w-[960px] justify-center mx-auto mt-12">
                         {/* First Name */}
                         <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-18">
                             <div className="w-full">
@@ -96,14 +169,14 @@ const RegisterPage = () => {
                                     <input
                                         type="text"
                                         id="firstName"
-                                        name="firstName"
-                                        value={formData.firstName}
-                                        onChange={handleChange}
+                                        {...register("firstName")}
                                         placeholder="Enter your first name"
                                         className="w-full px-4 py-2 rounded-lg font-inter font-normal text-base text-[#505050] focus:outline-none"
                                     />
-
                                 </div>
+                                {errors.firstName && (
+                                    <p className={errorClass}>{errors.firstName.message}</p>
+                                )}
                             </div>
 
                             {/* Last Name */}
@@ -131,15 +204,16 @@ const RegisterPage = () => {
                                     </span>
                                     <input
                                         type="text"
-                                        id="firstName"
-                                        name="firstName"
-                                        value={formData.firstName}
-                                        onChange={handleChange}
-                                        placeholder="Enter your first name"
+                                        id="lastName"
+                                        {...register("lastName")}
+                                        placeholder="Enter your last name"
                                         className="w-full px-4 py-2 rounded-lg font-inter font-normal text-base text-[#505050] focus:outline-none"
                                     />
 
                                 </div>
+                                {errors.lastName && (
+                                    <p className={errorClass}>{errors.lastName.message}</p>
+                                )}
                             </div>
                         </div>
 
@@ -163,14 +237,14 @@ const RegisterPage = () => {
                                     <input
                                         type="tel"
                                         id="contactNumber"
-                                        name="contactNumber"
-                                        value={formData.contactNumber}
-                                        onChange={handleChange}
+                                        {...register("contactNumber")}
                                         placeholder="Enter your contact number"
                                         className="w-full px-4 py-2 rounded-lg font-inter font-normal text-base text-[#505050] focus:outline-none"
                                     />
-
                                 </div>
+                                {errors.contactNumber && (
+                                    <p className={errorClass}>{errors.contactNumber.message}</p>
+                                )}
                             </div>
 
                             {/* NIC/Passport */}
@@ -192,14 +266,14 @@ const RegisterPage = () => {
                                     <input
                                         type="text"
                                         id="nicPassport"
-                                        name="nicPassport"
-                                        value={formData.nicPassport}
-                                        onChange={handleChange}
+                                        {...register("nicPassport")}
                                         placeholder="Enter your NIC/Passport number"
                                         className="w-full px-4 py-2 rounded-lg font-inter font-normal text-base text-[#505050] focus:outline-none"
                                     />
-
                                 </div>
+                                {errors.nicPassport && (
+                                    <p className={errorClass}>{errors.nicPassport.message}</p>
+                                )}
                             </div>
                         </div>
 
@@ -232,14 +306,14 @@ const RegisterPage = () => {
                                     <input
                                         type="email"
                                         id="email"
-                                        name="email"
-                                        value={formData.email}
-                                        onChange={handleChange}
+                                        {...register("email")}
                                         placeholder="Enter your email address"
                                         className="w-full px-4 py-2 rounded-lg font-inter font-normal text-base text-[#505050] focus:outline-none"
                                     />
-
                                 </div>
+                                {errors.email && (
+                                    <p className={errorClass}>{errors.email.message}</p>
+                                )}
                             </div>
 
                             {/* Country */}
@@ -251,9 +325,9 @@ const RegisterPage = () => {
                                 <div
                                     className="flex flex-row w-full px-2 items-center py-2 mt-2 border-3 border-[#EDF1F7] hover:border-[#2D3192]/50 rounded-md focus:outline-[#2D3192] focus:border-blue-500">
                                     <span className="left-0 flex items-center pl-3 text-gray-500">
-                                        {formData.country && getCountryCode(formData.country) ? (
+                                        {countryValue && getCountryCode(countryValue) ? (
                                             <ReactCountryFlag
-                                                countryCode={getCountryCode(formData.country)!}
+                                                countryCode={getCountryCode(countryValue)!}
                                                 svg
                                                 style={{width: "20px", height: "15px"}}
                                             />
@@ -281,13 +355,14 @@ const RegisterPage = () => {
                                     <input
                                         type="text"
                                         id="country"
-                                        name="country"
-                                        value={formData.country}
-                                        onChange={handleChange}
+                                        {...register("country")}
                                         placeholder="Enter your country"
                                         className="w-full px-4 py-2 rounded-lg font-inter font-normal text-base text-[#505050] focus:outline-none"
                                     />
                                 </div>
+                                {errors.country && (
+                                    <p className={errorClass}>{errors.country.message}</p>
+                                )}
                             </div>
                         </div>
 
@@ -319,9 +394,7 @@ const RegisterPage = () => {
                                         <input
                                             type={showPassword ? 'text' : 'password'}
                                             id="password"
-                                            name="password"
-                                            value={formData.password}
-                                            onChange={handleChange}
+                                            {...register("password")}
                                             placeholder="Create a password"
                                             className="w-full px-4 py-2 rounded-lg font-inter font-normal text-base text-[#505050] focus:outline-none"
                                         />
@@ -355,6 +428,9 @@ const RegisterPage = () => {
                                         }
                                     </button>
                                 </div>
+                                {errors.password && (
+                                    <p className={errorClass}>{errors.password.message}</p>
+                                )}
                             </div>
 
                             {/* Confirm Password */}
@@ -383,9 +459,7 @@ const RegisterPage = () => {
                                     <input
                                         type={showConfirmPassword ? 'text' : 'password'}
                                         id="confirmPassword"
-                                        name="confirmPassword"
-                                        value={formData.confirmPassword}
-                                        onChange={handleChange}
+                                        {...register("confirmPassword")}
                                         placeholder="Confirm your password"
                                         className="w-full px-4 py-2 rounded-lg font-inter font-normal text-base text-[#505050] focus:outline-none"
                                     />
@@ -418,6 +492,9 @@ const RegisterPage = () => {
                                         }
                                     </button>
                                 </div>
+                                {errors.confirmPassword && (
+                                    <p className={errorClass}>{errors.confirmPassword.message}</p>
+                                )}
                             </div>
                         </div>
 
@@ -430,7 +507,7 @@ const RegisterPage = () => {
                         <div className="flex justify-center">
                             <button
                                 type="submit"
-                                className="md:w-110 w-60 px-4 py-3 mt-4 text-white font-inter text-sm font-normal bg-[#2D3192] rounded-md hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500"
+                                className="md:w-110 w-60 px-4 py-3 mt-4 cursor-pointer text-white font-inter text-sm font-normal bg-[#2D3192] rounded-md hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500"
                             >
                                 Create an account
                             </button>
