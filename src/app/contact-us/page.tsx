@@ -497,7 +497,7 @@ interface FormValues {
 
 const ContactUsPage = () => {
     const hero: HeroProps = {
-        image: "/contact-he.png",
+        image: "/contact-us-hero.png",
         title: "Contact Us",
         subTitle: "Discover your favorite entertainment right here",
     };
@@ -580,8 +580,8 @@ const ContactUsPage = () => {
         <div className="min-h-screen">
             <HeroSection hero={hero}/>
             <div
-                className="py-8 px-4 sm:px-6 lg:px-8 rounded-b-[50px] lg:rounded-b-[100px] -mt-10 lg:-mt-30 bg-[#F4FCFF]">
-                <div className="max-w-7xl mx-auto">
+                className="py-8 px-4 sm:px-6 lg:px-8 rounded-b-[50px] lg:rounded-b-[100px] -mt-20 bg-[#F4FCFF]">
+                <div className="max-w-7xl mt-20 mx-auto">
                     <div>
                         <SectionTitle title="Contact Us"/>
                     </div>
