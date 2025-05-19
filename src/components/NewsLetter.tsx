@@ -189,7 +189,7 @@ const Newsletters = () => {
                 {/* Content container with responsive spacing */}
                 <div
                     className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center lg:ml-44 px-4 sm:px-8 md:px-12 lg:px-16">
-                    <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold text-white mb-3 sm:mb-4 md:mb-6">
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-semibold text-white mb-3 sm:mb-4 md:mb-6">
                         Subscribe Our Newsletter
                     </h2>
 
