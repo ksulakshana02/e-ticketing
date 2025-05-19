@@ -161,6 +161,7 @@ const Newsletters = () => {
             }
         } catch (error) {
             setMessage({text: "An error occurred. Please try again.", type: "error"});
+            console.log(error);
         }
     }, [email]);
 
