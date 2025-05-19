@@ -36,9 +36,9 @@ const Footer: React.FC = () => {
                 {/*    className="absolute bg-repeat-round w-full inset-0">*/}
                 {/*    <Image src="/movie-ticket.png" alt="" width={100} height={200} className="bg-repeat-round inset-0 absolute"/>*/}
                 {/*</div>*/}
-                <div
-                    className="absolute bg-[url('/movie-ticket.png')] bg-repeat-round inset-0 w-full h-full bg-[length:100px_auto]"
-                ></div>
+                {/*<div*/}
+                {/*    className="absolute bg-[url('/movie-ticket.png')] bg-repeat-round inset-0 w-full h-full bg-[length:100px_auto]"*/}
+                {/*></div>*/}
                 <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex flex-col md:flex-row gap-8">
                         {/* Logo and Description */}
