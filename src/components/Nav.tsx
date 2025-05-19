@@ -71,7 +71,7 @@ const NavigationBar: React.FC = () => {
                 {/* Navigation Menu and Auth Buttons - Desktop/Tablet */}
                 <div className="hidden lg:flex lg:items-center lg:gap-4 xl:gap-6">
                     <nav
-                        className="flex flex-row gap-2 xl:gap-4 items-center text-white font-inter text-base xl:text-lg font-medium"
+                        className="flex flex-row gap-2 xl:gap-4 items-center text-white font-inter text-base xl:text-xl font-medium"
                     >
                         {menuItems.map((item) => (
                             <Link href={item.link} key={item.link}>
