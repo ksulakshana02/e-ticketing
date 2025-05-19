@@ -10,8 +10,8 @@ const Footer: React.FC = () => {
         {title: "Events", link: "/events"},
         {title: "About Us", link: "/about-us"},
         {title: "Contact Us", link: "/contact-us"},
-        {title: "Sign In", link: "#"},
-        {title: "Sign Up", link: "#"}
+        {title: "Sign In", link: "/login"},
+        {title: "Register", link: "/register"}
     ];
 
     const usefulLinks = [
