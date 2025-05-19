@@ -240,6 +240,8 @@ const EventsContent = () => {
     const startIndex = (currentPage - 1) * eventsPerPage;
     const paginatedEvents = filteredEvents.slice(startIndex, startIndex + eventsPerPage);
 
+    console.log(setFilters);
+
     return (
         <div className="py-8 px-4 sm:px-6 lg:px-8 bg-white">
             {/*<div className="py-2 sm:py-10 px-4 sm:px-6 max-w-7xl mx-auto">*/}
