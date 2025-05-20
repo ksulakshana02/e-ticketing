@@ -425,7 +425,7 @@ const ProfileForm = forwardRef<ProfileFormRef>((props, ref) => {
     }));
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 justify-start max-w-5xl px-4 sm:px-6 lg:px-0">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <InputField
                     label="First Name"

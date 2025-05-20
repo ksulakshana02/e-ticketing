@@ -28,8 +28,8 @@ const ProfilePage = () => {
     }
 
     const sectionTitles: Record<NavigationTab, string> = {
-        details: "My Details",
-        security: "Security",
+        details: "Profile Setting",
+        security: "Security Setting",
         bookingHistory: "Booking History",
         paymentHistory: "Payment History",
     };

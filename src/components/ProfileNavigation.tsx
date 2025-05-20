@@ -161,7 +161,7 @@ const UpdateButton: React.FC<UpdateButtonProps> = memo(({onClick}) => {
     return (
         <button
             onClick={onClick}
-            className="px-4 py-3 text-sm font-medium text-white bg-indigo-900 rounded-md border-2 border-indigo-900 hover:bg-indigo-800 transition-colors w-40 md:w-44 max-sm:w-full"
+            className="px-4 py-3 text-sm font-medium text-white bg-[#27337C] rounded-md border-2 border-indigo-900 hover:bg-indigo-800 transition-colors w-40 md:w-44 max-sm:w-full"
             aria-label="Update profile or security settings"
         >
             Update
@@ -176,7 +176,7 @@ const ProfileNavigationTab: React.FC<ProfileNavigationTabProps> = memo(({label, 
         <button
             onClick={onClick}
             className={`
-        flex-1 px-4 py-3 text-sm font-medium text-indigo-900 rounded-md transition-colors
+        flex-1 px-4 min-w-36 py-3 text-sm font-medium text-[#2D2A70] rounded-md transition-colors
         h-10 max-sm:h-9 max-sm:text-xs
         ${isActive ? "bg-white shadow-sm" : "bg-[#F1F5F9] hover:bg-gray-200"}
       `}
@@ -222,7 +222,7 @@ const ProfileNavigation: React.FC<ProfileNavigationProps> = ({
 
     return (
         <nav
-            className="flex flex-col md:flex-row gap-4 items-center justify-between px-4 py-3 mx-auto max-w-7xl"
+            className="flex flex-col md:flex-row gap-4 items-center justify-between px-4 py-3 mx-auto w-full"
             aria-label="Profile navigation"
         >
             <div

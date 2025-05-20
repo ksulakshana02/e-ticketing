@@ -142,11 +142,11 @@ const EventCard: React.FC<TicketDetails> = memo(
 
         return (
             <div
-                className="px-4 py-6 border border-[#E7EAE9] rounded-lg bg-white shadow-sm hover:shadow-md transition-shadow w-full max-w-3xl mx-auto"
+                className="px-4 py-6 border border-[#E7EAE9] rounded-lg bg-white shadow-sm hover:shadow-md transition-shadow w-full max-w-full mx-auto"
                 role="article"
                 aria-label={`Event card for ${eventName}`}
             >
-                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <div className="flex flex-col px-8 sm:flex-row justify-between items-start sm:items-center gap-4">
                     {/* Event Details */}
                     <div className="flex-1">
                         <h3 className="text-lg sm:text-xl font-inter font-semibold text-[#000000]">
@@ -222,8 +222,8 @@ const BookingHistory: React.FC = () => {
 
     return (
         <div className="py-8 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-4xl mx-auto">
-                <div className="space-y-6">
+            <div className="w-full mx-auto">
+                <div className="space-y-8">
                     {ticketsData.map((ticket, index) => (
                         <EventCard key={`${ticket.eventName}-${index}`} {...ticket} />
                     ))}

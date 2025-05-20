@@ -167,7 +167,7 @@ const PaymentHistory: React.FC = () => {
                         <TableHead>
                             <TableRow
                                 sx={{
-                                    backgroundColor: "#F9FAFB",
+                                    // backgroundColor: "#F9FAFB",
                                     "&:hover": {backgroundColor: "#F9FAFB"},
                                 }}
                             >
