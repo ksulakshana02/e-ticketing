@@ -152,8 +152,9 @@ import SectionTitle from "@/components/SectionTitle";
 import * as React from "react";
 import EventCard from "@/components/EventCard";
 import {useSearchParams} from "next/navigation";
-import {events} from "@/lib/data"
 import NewsLetter from "@/components/NewsLetter";
+import {useEvents} from "@/hooks/useEvent";
+import {getLocalDateTime} from "@/util/util";
 
 interface HeroProps {
     image: string;
@@ -193,10 +194,78 @@ const EventsContent = () => {
     const searchParams = useSearchParams();
     const searchQuery = searchParams.get("search")?.toLowerCase() || "";
 
+
+    const {data: eventData, isLoading, error} = useEvents();
+    console.log("------------raw data", eventData);
+    const eventDataArr = eventData?.events || [];
+
     // const handleFilterChange = (newFilters: EventFilters) => {
     //     setFilters(newFilters);
     //     setCurrentPage(1);
     // };
+
+    // const getLocalDateTime = (utcDateTime: string) => {
+    //     const date = new Date(utcDateTime);
+    //     const localDate = date.toLocaleDateString("en-CA", {
+    //         year: "numeric",
+    //         month: "2-digit",
+    //         day: "2-digit",
+    //     });
+    //
+    //     const localTime = date.toLocaleTimeString("en-US", {
+    //         hour: "numeric",
+    //         minute: "2-digit",
+    //         hour12: true,
+    //     });
+    //     return {localDate, localTime};
+    // };
+
+    // const transformedEvents = Array.isArray(eventDataArr)
+    //     ? eventDataArr.map((event) => ({
+    //         id: event.id,
+    //         title: event.name,
+    //         artist: {
+    //             id: event.artist_details[0]?.artistId || 0,
+    //             name: event.artist_details[0]?.artistName || "Unknown Artist",
+    //         },
+    //         location: event.location,
+    //         date: event.start_date_time,
+    //         price: `${Math.min(...(event.ticket_details?.map((t) => t.price) || [0]))} LKR`,
+    //         slug: event.slug,
+    //         description: event.description,
+    //         banner_image: event.banner_image,
+    //         image: event.featured_image,
+    //         ticket_details: event.ticket_details,
+    //         artist_details: event.artist_details,
+    //         status: event.status,
+    //     }))
+    //     : [];
+
+    const transformedEvents = Array.isArray(eventDataArr)
+        ? eventDataArr.map((event) => {
+            const {localDate, localTime} = getLocalDateTime(event.start_date_time);
+            return {
+                id: event.id,
+                title: event.name,
+                artist: {
+                    id: event.artist_details[0]?.artistId || 0,
+                    name: event.artist_details[0]?.artistName || "Unknown Artist",
+                },
+                location: event.location,
+                date: localDate, // Local date (e.g., "2025-05-24")
+                time: localTime, // Local time (e.g., "11:30 PM")
+                price: `${Math.min(...(event.ticket_details?.map((t: { price: string; }) => t.price) || [0]))} LKR`,
+                slug: event.slug,
+                description: event.description,
+                banner_image: event.banner_image,
+                image: event.featured_image,
+                ticket_details: event.ticket_details,
+                artist_details: event.artist_details,
+                status: event.status,
+            };
+        })
+        : [];
+
 
     // Function to parse price from string to number
     const parsePrice = (price: string): number => {
@@ -208,7 +277,7 @@ const EventsContent = () => {
         return new Date(date);
     };
 
-    const filteredEvents = events.filter((event) => {
+    const filteredEvents = transformedEvents.filter((event) => {
         const eventDate = parseEventDate(event.date);
         const eventPrice = parsePrice(event.price);
 
@@ -242,38 +311,49 @@ const EventsContent = () => {
 
     console.log(setFilters);
 
+
+    if (isLoading) {
+        return <div className="flex justify-center items-center min-h-screen">
+            Loading...
+        </div>
+    }
+
+    if (error) {
+        return <div className="text-center text-red-500 p-8">Error fetching events</div>
+    }
+
     return (
         <div className="py-8 px-4 sm:px-6 lg:px-8 bg-white">
             {/*<div className="py-2 sm:py-10 px-4 sm:px-6 max-w-7xl mx-auto">*/}
             <div className="max-w-7xl mx-auto">
-            <div>
-                <SectionTitle title="Latest Events"/>
-            </div>
-            <div className="py-6 sm:py-10">
-                {/*<EventFilter onFilterChange={handleFilterChange}/>*/}
-            </div>
-            <section className="">
-                <div className="max-w-7xl mx-auto">
-                    {paginatedEvents.length > 0 ? (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
-                            {paginatedEvents.map((event, index) => (
-                                <EventCard key={index} {...event} />
-                            ))}
-                        </div>
-                    ) : (
-                        <div className="text-center py-10">
-                            <p className="text-gray-500 font-semibold">No events match the selected filters.</p>
-                        </div>
-                    )}
+                <div>
+                    <SectionTitle title="Latest Events"/>
                 </div>
-            </section>
-            <div className="my-10 flex justify-center">
-                <Pagination
-                    currentPage={currentPage}
-                    totalPages={totalPages}
-                    onPageChange={setCurrentPage}
-                />
-            </div>
+                <div className="py-6 sm:py-10">
+                    {/*<EventFilter onFilterChange={handleFilterChange}/>*/}
+                </div>
+                <section className="">
+                    <div className="max-w-7xl mx-auto">
+                        {paginatedEvents.length > 0 ? (
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
+                                {paginatedEvents.map((event, index) => (
+                                    <EventCard key={index} {...event} />
+                                ))}
+                            </div>
+                        ) : (
+                            <div className="text-center py-10">
+                                <p className="text-gray-500 font-semibold">No events match the selected filters.</p>
+                            </div>
+                        )}
+                    </div>
+                </section>
+                <div className="my-10 flex justify-center">
+                    <Pagination
+                        currentPage={currentPage}
+                        totalPages={totalPages}
+                        onPageChange={setCurrentPage}
+                    />
+                </div>
             </div>
         </div>
     );

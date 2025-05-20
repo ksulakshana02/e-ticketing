@@ -11,6 +11,7 @@ interface EventCardProps {
     time: string;
     location: string;
     price: string;
+    slug: string;
 }
 
 const EventCard: React.FC<EventCardProps> = ({
@@ -20,9 +21,10 @@ const EventCard: React.FC<EventCardProps> = ({
                                                  time,
                                                  location,
                                                  price,
+                                                 slug
                                              }) => {
     return (
-        <Link href={`/events/${title}`}>
+        <Link href={`/events/${slug}`}>
             <article className="w-full max-w-[296px] mx-auto">
                 <div className="border-2 border-violet-100 rounded-md">
                     <div className="p-3">
@@ -74,7 +76,7 @@ const EventCard: React.FC<EventCardProps> = ({
                             </div>
                         </div>
                     </div>
-                    <Link href={`/events/${title}`}>
+                    <Link href={`/events/${slug}`}>
                         <button
                             className="mt-6 w-full px-6 py-3 bg-[#27337C] text-white font-inter font-medium text-sm cursor-pointer rounded-b-md border-2 border-[#27337C] hover:bg-indigo-800 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                         >

@@ -131,6 +131,7 @@ import {useRouter} from "next/navigation";
 interface HeroProps {
     image: string;
     title: string;
+    time?: string;
     subTitle: string;
     type: string;
 }
@@ -147,10 +148,9 @@ const Hero = ({hero}: { hero: HeroProps }) => {
     const [searchQuery, setSearchQuery] = useState("");
     const router = useRouter();
 
-    const targetDate = new Date("2025-06-10T19:00:00").getTime();
-
     useEffect(() => {
-        if (hero.type === "countdown") {
+        if (hero.type === "countdown" && hero.time) {
+            const targetDate = new Date(hero.time).getTime();
             const interval = setInterval(() => {
                 const now = new Date().getTime();
                 const distance = targetDate - now;
@@ -170,7 +170,7 @@ const Hero = ({hero}: { hero: HeroProps }) => {
 
             return () => clearInterval(interval);
         }
-    }, [hero.type, targetDate]);
+    }, [hero.type, hero.time]);
 
 
     const handleSearchSubmit = (e: React.FormEvent) => {
