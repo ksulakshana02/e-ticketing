@@ -329,7 +329,7 @@ const InputField: React.FC<{
 }> = memo(({label, id, type = "text", placeholder, control, error, options}) => {
     return (
         <div className="flex flex-col w-full max-w-md">
-            <label htmlFor={id} className="block text-base lg:text-xl font-inter font-medium text-[#222222]">
+            <label htmlFor={id} className="block text-base lg:text-[22px] font-inter font-medium text-[#222222]">
                 {label}
             </label>
             <div className="mt-2 relative">

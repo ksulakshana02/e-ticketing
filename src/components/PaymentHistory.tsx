@@ -172,22 +172,22 @@ const PaymentHistory: React.FC = () => {
                                 }}
                             >
                                 <TableCell align="center" sx={{py: 2, px: {xs: 1, sm: 2}}}>
-                                    <div className="font-inter text-sm sm:text-base font-semibold text-[#2D2A70]">
+                                    <div className="font-inter text-sm sm:text-lg font-semibold text-[#2D2A70]">
                                         Event Details
                                     </div>
                                 </TableCell>
                                 <TableCell align="center" sx={{py: 2, px: {xs: 1, sm: 2}}}>
-                                    <div className="font-inter text-sm sm:text-base font-semibold text-[#2D2A70]">
+                                    <div className="font-inter text-sm sm:text-lg font-semibold text-[#2D2A70]">
                                         Amount
                                     </div>
                                 </TableCell>
                                 <TableCell align="center" sx={{py: 2, px: {xs: 1, sm: 2}}}>
-                                    <div className="font-inter text-sm sm:text-base font-semibold text-[#2D2A70]">
+                                    <div className="font-inter text-sm sm:text-lg font-semibold text-[#2D2A70]">
                                         Date
                                     </div>
                                 </TableCell>
                                 <TableCell align="center" sx={{py: 2, px: {xs: 1, sm: 2}}}>
-                                    <div className="font-inter text-sm sm:text-base font-semibold text-[#2D2A70]">
+                                    <div className="font-inter text-sm sm:text-lg font-semibold text-[#2D2A70]">
                                         Status
                                     </div>
                                 </TableCell>
@@ -206,19 +206,19 @@ const PaymentHistory: React.FC = () => {
                                         align="center"
                                         sx={{py: 2, px: {xs: 1, sm: 2}, fontSize: {xs: "0.75rem", sm: "0.875rem"}}}
                                     >
-                                        <div className="font-inter text-[#000000]">{row.name}</div>
+                                        <div className="font-inter text-sm lg:text-base text-[#000000]">{row.name}</div>
                                     </TableCell>
                                     <TableCell
                                         align="center"
                                         sx={{py: 2, px: {xs: 1, sm: 2}, fontSize: {xs: "0.75rem", sm: "0.875rem"}}}
                                     >
-                                        <div className="font-inter text-[#000000]">{row.amount}</div>
+                                        <div className="font-inter text-sm lg:text-base text-[#000000]">{row.amount}</div>
                                     </TableCell>
                                     <TableCell
                                         align="center"
                                         sx={{py: 2, px: {xs: 1, sm: 2}, fontSize: {xs: "0.75rem", sm: "0.875rem"}}}
                                     >
-                                        <div className="font-inter text-[#000000]">{row.date}</div>
+                                        <div className="font-inter text-sm lg:text-base text-[#000000]">{row.date}</div>
                                     </TableCell>
                                     <TableCell align="center" sx={{py: 2, px: {xs: 1, sm: 2}}}>
                                         <div

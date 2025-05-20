@@ -176,8 +176,8 @@ const ProfileNavigationTab: React.FC<ProfileNavigationTabProps> = memo(({label, 
         <button
             onClick={onClick}
             className={`
-        flex-1 px-4 min-w-36 py-3 text-sm font-medium text-[#2D2A70] rounded-md transition-colors
-        h-10 max-sm:h-9 max-sm:text-xs
+        flex-1 px-4 min-w-40 items-center py-3 text-base font-inter font-medium text-[#2D2A70] rounded-md transition-colors
+        h-12 max-sm:h-9 max-sm:text-sm
         ${isActive ? "bg-white shadow-sm" : "bg-[#F1F5F9] hover:bg-gray-200"}
       `}
             aria-selected={isActive}
